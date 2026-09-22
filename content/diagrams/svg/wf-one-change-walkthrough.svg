@@ -1,0 +1,49 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:32px;font-weight:600;fill:#1f1f1c}
+.sh{font-size:16px;font-weight:600}.ss{font-size:13px}
+.lane{font-size:14px;font-weight:600;fill:#5F5E5A}
+.cap{font-size:20px;fill:#5F5E5A}
+</style>
+<rect width="1200" height="628" fill="#fff"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#888780" stroke-width="1.5"/></marker></defs>
+<text class="t" x="78" y="80">One change through the workflow</text>
+<text class="lane" x="78" y="166">Agent</text>
+<text class="lane" x="78" y="296">Checks</text>
+<text class="lane" x="78" y="426">People</text>
+<line x1="78" y1="180" x2="1122" y2="180" stroke="#e8e6df" stroke-width="1"/>
+<line x1="78" y1="310" x2="1122" y2="310" stroke="#e8e6df" stroke-width="1"/>
+<line x1="78" y1="440" x2="1122" y2="440" stroke="#e8e6df" stroke-width="1"/>
+<rect x="160" y="130" width="200" height="90" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+<text class="sh" x="260" y="158" text-anchor="middle" fill="#26215C">1 · Agent traces the path</text>
+<text class="ss" x="260" y="180" text-anchor="middle" fill="#534AB7">endpoint checks permissions;</text>
+<text class="ss" x="260" y="197" text-anchor="middle" fill="#534AB7">worker uses a broader query</text>
+<line x1="260" y1="220" x2="330" y2="256" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="336" y="258" width="200" height="90" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="2"/>
+<text class="sh" x="436" y="286" text-anchor="middle" fill="#4A1B0C">2 · Access test fails</text>
+<text class="ss" x="436" y="308" text-anchor="middle" fill="#993C1D">two customers, one entitlement;</text>
+<text class="ss" x="436" y="325" text-anchor="middle" fill="#993C1D">unauthorized record in file</text>
+<line x1="536" y1="303" x2="576" y2="303" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="582" y="258" width="200" height="90" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="sh" x="682" y="286" text-anchor="middle" fill="#04342C">3 · Fixed, tests pass</text>
+<text class="ss" x="682" y="308" text-anchor="middle" fill="#0F6E56">new revision; affected</text>
+<text class="ss" x="682" y="325" text-anchor="middle" fill="#0F6E56">checks run again</text>
+<line x1="682" y1="348" x2="760" y2="386" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="766" y="388" width="200" height="90" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="sh" x="866" y="416" text-anchor="middle" fill="#1f1f1c">4 · Reviewer asks</text>
+<text class="ss" x="866" y="438" text-anchor="middle" fill="#5F5E5A">access revoked after queueing?</text>
+<text class="ss" x="866" y="455" text-anchor="middle" fill="#5F5E5A">policy unspecified → blocked</text>
+<line x1="966" y1="433" x2="1000" y2="433" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="1006" y="388" width="116" height="90" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="sh" x="1064" y="416" text-anchor="middle" fill="#1f1f1c">5 · Decision</text>
+<text class="ss" x="1064" y="438" text-anchor="middle" fill="#5F5E5A">permissions at</text>
+<text class="ss" x="1064" y="455" text-anchor="middle" fill="#5F5E5A">execution time</text>
+<path d="M1064 388 L1064 360 L960 360 L960 314" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="828" y="222" width="264" height="90" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="sh" x="960" y="250" text-anchor="middle" fill="#04342C">6 · New criterion, new test</text>
+<text class="ss" x="960" y="272" text-anchor="middle" fill="#0F6E56">queue → revoke → execute;</text>
+<text class="ss" x="960" y="289" text-anchor="middle" fill="#0F6E56">passes → ready for merge</text>
+<rect x="78" y="500" width="1044" height="52" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="ss" x="600" y="532" text-anchor="middle" fill="#1f1f1c" style="font-size:15px">Evidence record: finding · failed check · fix · passing checks · open question · decision · new test · outcome. Every step, no reconstruction.</text>
+<text class="cap" x="600" y="596" text-anchor="middle">A passing test suite did not resolve the policy. A person did. The workflow recorded both.</text>
+</svg>

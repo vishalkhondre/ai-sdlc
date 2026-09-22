@@ -1,0 +1,34 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:32px;font-weight:600;fill:#1f1f1c}.h{font-size:15px;fill:#5F5E5A}
+.req{font-size:26px;fill:#1f1f1c;font-weight:600}
+.li{font-size:18px;fill:#1f1f1c}.lip{font-size:18px;fill:#26215C}.lic{font-size:18px;fill:#4A1B0C}
+.hp{font-size:16px;fill:#534AB7;font-weight:600}.hc{font-size:16px;fill:#993C1D;font-weight:600}
+.cap{font-size:20px;fill:#5F5E5A}.ch{font-size:34px;fill:#888780}
+</style>
+<rect width="1200" height="628" fill="#fff"/>
+<text class="t" x="78" y="80">Unresolved decisions become assumptions</text>
+<text class="h" x="78" y="150">The request</text>
+<rect x="78" y="166" width="240" height="120" rx="12" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="req" x="198" y="222" text-anchor="middle">"Add an export</text>
+<text class="req" x="198" y="254" text-anchor="middle">button"</text>
+<text class="ch" x="354" y="236" text-anchor="middle">&#8250;</text>
+<text class="hp" x="390" y="150">What the agent can build</text>
+<rect x="390" y="166" width="280" height="120" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+<text class="lip" x="414" y="204">&#10003;  A button in the interface</text>
+<text class="lip" x="414" y="234">&#10003;  An export endpoint</text>
+<text class="lip" x="414" y="264">&#10003;  A downloadable file</text>
+<text class="ch" x="706" y="236" text-anchor="middle">&#8250;</text>
+<text class="hc" x="742" y="150">What the request leaves open</text>
+<rect x="742" y="166" width="380" height="230" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="2"/>
+<text class="lic" x="766" y="204">?  Which records may each user export?</text>
+<text class="lic" x="766" y="240">?  Which fields must be excluded?</text>
+<text class="lic" x="766" y="276">?  How should large exports behave?</text>
+<text class="lic" x="766" y="312">?  What happens if the export fails?</text>
+<text class="lic" x="766" y="348">?  Does the action need an audit record?</text>
+<text class="h" x="766" y="382">Each one is decided anyway. Quietly.</text>
+<rect x="78" y="440" width="1044" height="72" rx="12" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="li" x="600" y="470" text-anchor="middle">The implementation can be technically coherent and still differ from what was intended.</text>
+<text class="li" x="600" y="496" text-anchor="middle">Readiness is not more detail. It is enough clarity on the decisions that matter for this change.</text>
+<text class="cap" x="600" y="580" text-anchor="middle">A hypothetical example, followed through the rest of the article.</text>
+</svg>

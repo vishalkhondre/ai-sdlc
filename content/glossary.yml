@@ -1,0 +1,381 @@
+# Terminology and where it comes from.
+#
+# attribution:
+#   adopted  — the term and its meaning come from `source`; cite it where used
+#   adapted  — the idea comes from `source`; this series uses a different word or a narrower meaning
+#   coined   — a working name introduced by this series
+#   common   — ordinary engineering vocabulary, no single source
+#
+# `match` lists phrases the generator auto-links (first occurrence per chapter).
+# `counterpart` names the nearest term in Böckeler's harness-engineering vocabulary,
+# so readers moving between the two can translate.
+
+- id: harness
+  term: Harness
+  attribution: adopted
+  source: bockeler-harness
+  definition: >-
+    Everything in a coding agent except the model itself: the context it reads, the tools it can
+    call, the permissions that bound it, the checks that run on its output and the record of what it did.
+    Böckeler's formulation is "Agent = Model + Harness". This series uses the wide sense — the whole
+    engineering environment around the agent — rather than the narrow sense of the scaffolding around one model call.
+  match: ["agent harness", "the harness"]
+  chapters: [part-3]
+
+- id: harness-engineering
+  term: Harness engineering
+  attribution: adopted
+  source: bockeler-harness
+  also: [openai-harness]
+  definition: >-
+    The practice of deliberately designing and maintaining the harness: what the agent can discover,
+    what it can do, how its work is checked and when a person needs to decide. Böckeler frames it as
+    building trust in coding agents through systematic controls; OpenAI's account describes the same
+    work applied to one large codebase. In this series it is the discipline, distinct from the artefact
+    (Engineering Kit), the unit (workflow) and the operating model (software factory).
+  match: ["harness engineering"]
+  chapters: [part-1, part-3]
+
+- id: guides-and-sensors
+  term: Guides and sensors
+  attribution: adopted
+  source: bockeler-harness
+  definition: >-
+    Böckeler's two kinds of control. Guides are feedforward: they anticipate the agent's behaviour and
+    steer it before it acts (instructions, constitutions, skills, templates). Sensors are feedback: they
+    observe after the agent acts and help it self-correct (tests, linters, type checkers, AI review).
+    This series does not use the words, but the split runs through it: skills and constitutions are guides;
+    validators, tests and the review skill are sensors.
+  counterpart: "guides ↔ skills, constitution, readiness questions; sensors ↔ validators, tests, review skill"
+  chapters: [part-3]
+
+- id: two-kinds-of-machinery
+  term: Two kinds of machinery (probabilistic and deterministic)
+  attribution: adapted
+  source: bockeler-harness
+  definition: >-
+    Probabilistic machinery understands intent, explores code, proposes designs and summarises evidence;
+    deterministic machinery compiles, runs tests, enforces dependency rules and blocks invalid builds.
+    Böckeler draws the same line as computational controls (deterministic, fast, run by the CPU) versus
+    inferential controls (semantic analysis, AI review, LLM-as-judge). The series' rule is that final
+    enforcement belongs with the deterministic side wherever a machine can check reliably.
+  counterpart: "computational ↔ deterministic; inferential ↔ probabilistic"
+  match: ["deterministic machinery", "probabilistic machinery", "two kinds of machinery"]
+  chapters: [part-6]
+
+- id: steering-loop
+  term: Steering loop
+  attribution: adopted
+  source: bockeler-harness
+  definition: >-
+    Böckeler's name for the human practice of iteratively improving guides and sensors based on recurring
+    agent failures. This series calls the same thing the feedback path, and enumerates its conversions:
+    defect → test, recurring comment → rule, violated rule → gate, production failure → eval case.
+  counterpart: "steering loop ↔ feedback path"
+  chapters: [part-6]
+
+- id: feedback-path
+  term: Feedback path
+  attribution: adapted
+  source: bockeler-harness
+  definition: >-
+    The defined place each lesson goes. A defect becomes a regression test. A recurring review comment
+    becomes a rule. A rule that keeps being violated becomes a deterministic gate. A production failure
+    becomes an evaluation case. A misunderstood requirement becomes a readiness question. A repeated
+    procedure becomes a skill. A brittle agent behaviour becomes a change to the harness. The change lands
+    upstream of where the problem appeared.
+  match: ["feedback path", "one feedback path"]
+  chapters: [part-6, part-7]
+
+- id: harnessability
+  term: Harnessability
+  attribution: adopted
+  source: bockeler-harness
+  definition: >-
+    The degree to which a codebase supports building a harness: typed languages, well-defined boundaries
+    and a runnable local environment make sensors cheap to add. The series' "give the agent a usable
+    starting point" (Part 3) and "brownfield pre-flight analysis" (workflow catalog) are the same concern.
+  chapters: [part-3]
+
+- id: harness-template
+  term: Harness template
+  attribution: adopted
+  source: bockeler-harness
+  definition: >-
+    Böckeler's proposal for bundles of guides and sensors standardised for common service topologies.
+    The Engineering Kit's technology profiles (validators and guidance per supported stack) are one
+    concrete form of this idea, with a rule registry and evidence schema added underneath.
+  counterpart: "harness template ↔ Engineering Kit technology profile"
+  chapters: [part-4]
+
+- id: engineering-kit
+  term: Engineering Kit
+  attribution: coined
+  definition: >-
+    The working name in this series for a versioned, installable package of the engineering environment
+    a team wants its people and its coding agents to operate inside: rule registry, validators, skills,
+    evaluation scenarios, evidence schema, commands and thin tool adapters, organised in four layers
+    (shared core, technology profiles, tool adapters, project configuration). Not an industry term.
+  match: ["Engineering Kit"]
+  chapters: [part-1, part-4]
+
+- id: rule-registry
+  term: Rule registry
+  attribution: coined
+  definition: >-
+    One entry per rule the team cares about, with an identifier, a statement, a route (gate, judgment or
+    guidance), an owner and known gaps. Validators declare which rules they enforce, skills which rules
+    they support, evidence which rule checks ran. The connecting structure of the kit.
+  match: ["rule registry"]
+  chapters: [part-4]
+
+- id: rule-route
+  term: Rule route (gate / judgment / guidance)
+  attribution: coined
+  definition: >-
+    The decision, made once per rule, of how it is enforced. A gate is a deterministic check that can
+    block. A judgment is a named person's call, recorded. Guidance shapes what the agent tries to do but
+    enforces nothing. "An instruction asks; a gate refuses." Böckeler's regulation categories
+    (maintainability, architecture fitness, behaviour) classify what a control regulates; the route
+    classifies how strongly.
+  match: ["routed to a gate", "routed to judgment", "gate, judgment or guidance"]
+  chapters: [part-3, part-4, part-7]
+
+- id: gate
+  term: Gate (deterministic gate)
+  attribution: common
+  also: [fowler-ci, fowler-fitness]
+  definition: >-
+    A check that runs on the output and can stop it: the quality command before a push, required checks
+    on a pull request, policy rules at release. Different from an instruction because it refuses rather
+    than asks. Architecture gates are what Ford, Parsons and Kua call fitness functions.
+  match: ["deterministic gate", "deterministic gates"]
+  chapters: [part-1, part-3]
+
+- id: deterministic-gate
+  term: Deterministic floor
+  attribution: coined
+  definition: >-
+    The minimum a kit's first release needs before any skill: a quality command that runs the same way
+    locally and in CI, a handful of validators for rules the team has already been hurt by, a rule
+    registry and an evidence schema. Dull, and the only part that makes the rest safe.
+  match: ["deterministic floor"]
+  chapters: [part-4, part-6]
+
+- id: validator
+  term: Validator
+  attribution: adapted
+  source: bockeler-sensors
+  definition: >-
+    A deterministic check tied to a rule identifier. Runs the same way locally and in CI, returns
+    passed / failed / skipped / could_not_run, and can block a merge. Ships when it runs reliably and
+    its failures are actionable. Böckeler's computational sensors (linters, type checks, dependency-cruiser,
+    SAST, mutation testing) are validators.
+  counterpart: "validator ↔ computational sensor"
+  match: ["validators", "validator"]
+  chapters: [part-4]
+
+- id: skill
+  term: Skill
+  attribution: common
+  definition: >-
+    Guidance the agent loads on demand, tied to rule identifiers, that shapes what it tries to do without
+    guaranteeing it. Probabilistic. Ships only with an evaluation history. In Böckeler's terms, a guide.
+  counterpart: "skill ↔ guide (feedforward control)"
+  match: ["reusable skill", "skill manifest"]
+  chapters: [part-4]
+
+- id: review-skill
+  term: Review skill
+  attribution: adapted
+  source: bockeler-sensors
+  definition: >-
+    An agent that reads a diff against the applicable rules and produces findings tagged to rule
+    identifiers. It proposes; it cannot block. Böckeler's inferential sensors (AI security review,
+    modularity review) are the same kind of thing.
+  counterpart: "review skill ↔ inferential sensor"
+  match: ["review skill", "reviewing agent"]
+  chapters: [part-7]
+
+- id: harness-evaluation
+  term: Harness evaluation (eval)
+  attribution: common
+  definition: >-
+    A scenario that tests whether the agent and its environment behave as intended: given a spec with an
+    unresolved access rule, does the agent stop and ask? Distinct from application tests. Repeated when
+    prompts, skills, tools or models change. The series treats eval history as the bar for shipping a skill.
+  match: ["harness evaluations", "evaluation case", "eval suite"]
+  chapters: [part-3, part-4]
+
+- id: evidence-record
+  term: Evidence record
+  attribution: coined
+  definition: >-
+    What a run leaves behind without anyone writing it: change and configuration revisions, kit version,
+    each check with its status and report link, agent findings, decisions pending, overall status.
+    Its schema is fixed by the kit and is the one thing a project cannot customise.
+  match: ["evidence record", "evidence schema"]
+  chapters: [part-4, part-5, part-7]
+
+- id: could-not-run
+  term: could_not_run
+  attribution: coined
+  definition: >-
+    A first-class result state, distinct from failed and skipped: the check was required but its
+    prerequisite was missing (a tool absent from the runner image, an environment unavailable). Blocks
+    on its own cause. Without it, the first broken runner quietly turns every gate it hosts into a suggestion.
+  match: ["could_not_run", "could not run"]
+  chapters: [part-3, part-5, part-7]
+
+- id: adapter
+  term: Adapter
+  attribution: coined
+  definition: >-
+    The thin binding between the kit's core and one tool: an execution surface (where the agent runs),
+    a change host (where the pull request lives) or a pipeline runner (where checks run unattended).
+    The test of an adapter is how little is in it.
+  match: ["tool adapters", "thin adapters"]
+  chapters: [part-4, part-7]
+
+- id: mechanism-vs-meaning
+  term: Mechanism versus meaning
+  attribution: coined
+  definition: >-
+    The kit supplies reusable mechanism (a test pattern, a runner, a rule identifier); the project supplies
+    the meaning those mechanisms must preserve (which identities may export which records, which fields are
+    excluded). A kit cannot infer product decisions because it has an authorization skill.
+  match: ["mechanism", "project intent"]
+  chapters: [part-4]
+
+- id: workflow
+  term: Workflow
+  attribution: coined
+  definition: >-
+    One delivery decision run end to end: a trigger, inputs, an agent task, automated checks, guardrails,
+    a human decision, outputs, feedback and an owner. A team has one when it has run repeatedly, leaves
+    evidence each time and has a metric.
+  match: ["a workflow"]
+  chapters: [part-1, part-5]
+
+- id: three-roles
+  term: Three roles (agent, checks, people)
+  attribution: coined
+  definition: >-
+    The agent does what is expensive for a person and tolerable to get slightly wrong. The checks do what
+    must not be wrong. The people do what needs context the workflow cannot hold. Workflows fail when these
+    blur: an agent treated as verifier, or people treated as checks.
+  chapters: [part-5]
+
+- id: risk-tier
+  term: Risk tier
+  attribution: common
+  definition: >-
+    Assigned at readiness or planning; selects which checks and which reviewers apply. The workflow
+    definition stays the same, its cost scales with the change. A low tier never removes an applicable rule.
+  match: ["risk tier", "tier 2"]
+  chapters: [part-5, part-7]
+
+- id: failure-path
+  term: Failure path
+  attribution: coined
+  definition: >-
+    A defined response to an interruption: a check detects a violation, a required check cannot run, a
+    requirement is ambiguous, an agent finding is rejected, an exception is requested. A test failure and an
+    unavailable environment need different responses; treating either as a pass misrepresents the evidence.
+  match: ["failure paths"]
+  chapters: [part-5]
+
+- id: evidence-handoff
+  term: Evidence hand-off
+  attribution: coined
+  definition: >-
+    Workflows are built one at a time but read each other's records: the readiness record configures
+    verification, the verification record feeds release readiness, the release record is what an incident
+    review reads. Evidence carries its scope with it and expires when the revision changes.
+  match: ["hand each other evidence"]
+  chapters: [part-5, part-6]
+
+- id: software-factory
+  term: Software factory
+  attribution: coined
+  definition: >-
+    Not a product or a platform: the operating model that appears when enough workflows share rules,
+    evidence and feedback, so that what production teaches changes what specification asks. The industrial
+    sense (identical outputs from a fixed process) is explicitly not what is meant.
+  match: ["software factory"]
+  chapters: [part-1, part-6]
+
+- id: review-fatigue
+  term: Review fatigue
+  attribution: common
+  definition: >-
+    More workflows, more evidence and more agent output landing on the same few approvers. Leading
+    indicators: review latency, reviewer concentration, shortening comments. The answer is moving every
+    mechanical check into a gate so reviewers see only decisions and exceptions.
+  match: ["review fatigue"]
+  chapters: [part-6]
+
+- id: skill-erosion
+  term: Skill erosion
+  attribution: common
+  definition: >-
+    What happens when agents do all the implementation and all the first drafts: the team stops getting
+    the unaided repetitions that keep judgment sharp, and the factory depends on that judgment at every
+    human decision point.
+  match: ["skill erosion"]
+  chapters: [part-6]
+
+- id: spec-driven-development
+  term: Spec-driven development
+  attribution: adopted
+  source: spec-kit
+  definition: >-
+    Making expected behaviour and constraints explicit before implementation, in a sequence from intent
+    through specification, clarification, plan and tasks. The series treats it as the process spine the
+    harness wraps around, and stays neutral on which tool supplies it.
+  match: ["Spec-Driven Development", "spec-driven development", "spec-driven flow"]
+  chapters: [part-1, part-2]
+
+- id: specification-readiness
+  term: Specification readiness
+  attribution: coined
+  definition: >-
+    Enough clarity to proceed responsibly, with remaining uncertainty made visible. A workflow whose
+    trigger is a spec marked ready for planning, whose checks are structural, whose decision is the product
+    owner's, and whose output is a readiness record later workflows read.
+  match: ["specification readiness", "readiness record"]
+  chapters: [part-2, part-5]
+
+- id: independent-basis
+  term: Independent basis for verification
+  attribution: coined
+  definition: >-
+    If an agent generates both the implementation and its tests from the same incomplete understanding,
+    both may share the same mistaken assumption. Verification needs something defined apart from the
+    implementation: acceptance criteria, access rules, interface contracts, representative data, failure scenarios.
+  match: ["independent basis"]
+  chapters: [part-2]
+
+- id: export-example
+  term: The export example
+  attribution: coined
+  definition: >-
+    The running hypothetical: a feature that lets users export customer records. Open decisions (which
+    records, which fields, large exports, failure, audit), an access rule (R-042 / SEC-004), a background
+    worker with a broader query, a 50k-row load scenario, a volume-limit rule (R-017). Every part of the
+    series follows the same change so the abstractions can be checked against one story.
+  match: ["customer-record export", "export feature"]
+  chapters: [part-2, part-3, part-4, part-5, part-6, part-7]
+
+- id: requisite-variety
+  term: Requisite variety
+  attribution: adopted
+  source: ashby
+  also: [bockeler-harness]
+  definition: >-
+    Ashby's law: a regulator can only control a system if it has at least as much variety as the system
+    it governs. Böckeler uses it to explain why committing to a narrow topology makes an agent easier to
+    harness: restricting what the agent may produce shrinks the space the controls must cover. The series'
+    "start with less than feels sufficient" and its preference for a few well-defined execution surfaces
+    rest on the same idea without naming it.
+  chapters: []

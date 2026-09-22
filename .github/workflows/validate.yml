@@ -1,0 +1,38 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+      - name: Install dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Citation and terminology gate
+        run: python scripts/check_citations.py
+      - name: Build site
+        run: python site/generate.py
+      - name: Render diagram PNGs and reference-sheet PDF
+        run: python scripts/render_diagrams.py
+      - name: Site tests
+        run: python -m unittest discover -s scripts/tests -v
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site

@@ -1,0 +1,38 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:32px;font-weight:600;fill:#1f1f1c}.rl{font-size:18px;fill:#5F5E5A}
+.s{font-size:17px;fill:#1f1f1c}.sh{font-size:17px;fill:#26215C;font-weight:600}
+.sc{font-size:17px;fill:#4A1B0C;font-weight:600}.st{font-size:17px;fill:#04342C;font-weight:600}
+.nc{font-size:15px;fill:#993C1D}.np{font-size:15px;fill:#534AB7}.nt{font-size:15px;fill:#0F6E56}
+.cap{font-size:20px;fill:#5F5E5A}
+</style>
+<rect width="1200" height="628" fill="#fff"/>
+<text class="t" x="78" y="80">Same phases, different bottleneck</text>
+<text class="rl" x="78" y="146">Before coding agents</text>
+<rect x="78" y="162" width="120" height="56" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="s" x="138" y="196" text-anchor="middle">Intent</text>
+<rect x="210" y="162" width="120" height="56" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="s" x="270" y="196" text-anchor="middle">Specify</text>
+<rect x="342" y="162" width="120" height="56" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="s" x="402" y="196" text-anchor="middle">Plan</text>
+<rect x="474" y="162" width="120" height="56" rx="9" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/><text class="sh" x="534" y="196" text-anchor="middle">Implement</text>
+<rect x="606" y="162" width="120" height="56" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="s" x="666" y="196" text-anchor="middle">Verify</text>
+<rect x="738" y="162" width="120" height="56" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="s" x="798" y="196" text-anchor="middle">Review</text>
+<rect x="870" y="162" width="120" height="56" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="s" x="930" y="196" text-anchor="middle">Release</text>
+<rect x="1002" y="162" width="120" height="56" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="s" x="1062" y="196" text-anchor="middle">Operate</text>
+<text class="np" x="534" y="244" text-anchor="middle">most of the waiting happens here</text>
+<text class="rl" x="78" y="322">With coding agents</text>
+<rect x="78" y="338" width="120" height="56" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="s" x="138" y="372" text-anchor="middle">Intent</text>
+<rect x="210" y="338" width="120" height="56" rx="9" fill="#FAECE7" stroke="#993C1D" stroke-width="2"/><text class="sc" x="270" y="372" text-anchor="middle">Specify</text>
+<rect x="342" y="338" width="120" height="56" rx="9" fill="#FAECE7" stroke="#993C1D" stroke-width="2"/><text class="sc" x="402" y="372" text-anchor="middle">Plan</text>
+<rect x="474" y="338" width="120" height="56" rx="9" fill="#fff" stroke="#534AB7" stroke-width="1.5" stroke-dasharray="5 4"/><text class="s" x="534" y="372" text-anchor="middle">Implement</text>
+<rect x="606" y="338" width="120" height="56" rx="9" fill="#FAECE7" stroke="#993C1D" stroke-width="2"/><text class="sc" x="666" y="372" text-anchor="middle">Verify</text>
+<rect x="738" y="338" width="120" height="56" rx="9" fill="#FAECE7" stroke="#993C1D" stroke-width="2"/><text class="sc" x="798" y="372" text-anchor="middle">Review</text>
+<rect x="870" y="338" width="120" height="56" rx="9" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/><text class="st" x="930" y="372" text-anchor="middle">Release</text>
+<rect x="1002" y="338" width="120" height="56" rx="9" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/><text class="st" x="1062" y="372" text-anchor="middle">Operate</text>
+<text class="nc" x="336" y="420" text-anchor="middle">open decisions become assumptions</text>
+<text class="np" x="534" y="420" text-anchor="middle">fast</text>
+<text class="nc" x="732" y="420" text-anchor="middle">more change, looking finished</text>
+<text class="nt" x="996" y="420" text-anchor="middle">evidence the earlier phases lacked</text>
+<path d="M1062 436 L1062 478 L270 478 L270 450" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-dasharray="6 4"/>
+<polygon points="264,454 276,454 270,442" fill="#0F6E56"/>
+<text class="nt" x="666" y="504" text-anchor="middle">which earlier assumption or check needs to change?</text>
+<text class="cap" x="600" y="574" text-anchor="middle">Implementation gets faster. The pressure moves to the phases on either side of it.</text>
+</svg>

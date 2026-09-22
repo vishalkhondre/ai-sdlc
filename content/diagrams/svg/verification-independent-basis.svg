@@ -1,0 +1,42 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:32px;font-weight:600;fill:#1f1f1c}
+.b{font-size:18px;fill:#1f1f1c}.bp{font-size:18px;fill:#26215C;font-weight:600}.bt{font-size:17px;fill:#04342C}
+.n{font-size:15px;fill:#5F5E5A}.nc{font-size:16px;fill:#993C1D;font-weight:600}.nt{font-size:16px;fill:#0F6E56;font-weight:600}
+.cap{font-size:20px;fill:#5F5E5A}
+</style>
+<rect width="1200" height="628" fill="#fff"/>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#888780" stroke-width="1.5"/></marker>
+<marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#0F6E56" stroke-width="1.5"/></marker>
+</defs>
+<text class="t" x="78" y="80">Verification needs an independent basis</text>
+<rect x="78" y="130" width="220" height="70" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+<text class="bp" x="188" y="160" text-anchor="middle">Agent's understanding</text>
+<text class="bp" x="188" y="184" text-anchor="middle">of the request</text>
+<line x1="298" y1="150" x2="374" y2="150" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="298" y1="180" x2="374" y2="240" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="380" y="122" width="180" height="56" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="b" x="470" y="156" text-anchor="middle">Implementation</text>
+<rect x="380" y="212" width="180" height="56" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="b" x="470" y="246" text-anchor="middle">Generated tests</text>
+<line x1="560" y1="150" x2="634" y2="185" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="560" y1="240" x2="634" y2="205" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="640" y="160" width="160" height="70" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="b" x="720" y="190" text-anchor="middle">Tests pass</text>
+<text class="n" x="720" y="214" text-anchor="middle">same assumptions</text>
+<text class="nc" x="830" y="176">Shared blind spot.</text>
+<text class="n" x="830" y="200">A test that confirms a file downloads</text>
+<text class="n" x="830" y="220">says nothing about which records it holds.</text>
+<line x1="78" y1="300" x2="1122" y2="300" stroke="#d3d1c7" stroke-width="1"/>
+<text class="nt" x="78" y="340">An independent basis, defined before or apart from the implementation</text>
+<rect x="78"  y="360" width="190" height="52" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/><text class="bt" x="173" y="392" text-anchor="middle">Acceptance criteria</text>
+<rect x="286" y="360" width="190" height="52" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/><text class="bt" x="381" y="392" text-anchor="middle">Access rules</text>
+<rect x="494" y="360" width="190" height="52" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/><text class="bt" x="589" y="392" text-anchor="middle">Interface contracts</text>
+<rect x="702" y="360" width="190" height="52" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/><text class="bt" x="797" y="392" text-anchor="middle">Representative data</text>
+<rect x="910" y="360" width="212" height="52" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/><text class="bt" x="1016" y="392" text-anchor="middle">Failure scenarios</text>
+<line x1="600" y1="412" x2="600" y2="452" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#g)"/>
+<rect x="400" y="458" width="400" height="56" rx="10" fill="#fff" stroke="#0F6E56" stroke-width="2"/>
+<text class="b" x="600" y="492" text-anchor="middle">Verification with something to check against</text>
+<text class="cap" x="600" y="575" text-anchor="middle">Passing tests are evidence about the scenarios those tests cover. Nothing more.</text>
+</svg>

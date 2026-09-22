@@ -1,0 +1,51 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:32px;font-weight:600;fill:#1f1f1c}
+.ih{font-size:18px;font-weight:600;fill:#4A1B0C}.is{font-size:15px;fill:#993C1D}
+.c{font-size:16px;fill:#1f1f1c}.ch{font-size:13px;fill:#5F5E5A;font-weight:600}
+.f{font-size:16px;fill:#04342C;font-weight:600}.fs{font-size:13px;fill:#0F6E56}
+.note{font-size:15px;fill:#5F5E5A}
+.cap{font-size:20px;fill:#5F5E5A}
+</style>
+<rect width="1200" height="628" fill="#fff"/>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#888780" stroke-width="1.5"/></marker>
+<marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#0F6E56" stroke-width="1.5"/></marker>
+</defs>
+<text class="t" x="78" y="80">One escaped defect, three causes, three different fixes</text>
+<rect x="78" y="212" width="290" height="166" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="2"/>
+<text class="ih" x="223" y="256" text-anchor="middle">Export defect in production</text>
+<text class="is" x="223" y="286" text-anchor="middle">A background job applied</text>
+<text class="is" x="223" y="306" text-anchor="middle">different access rules than</text>
+<text class="is" x="223" y="326" text-anchor="middle">the interactive endpoint.</text>
+<text class="is" x="223" y="352" text-anchor="middle">Fix the defect.</text>
+<text class="is" x="223" y="368" text-anchor="middle">Then ask why it got through.</text>
+<line x1="368" y1="270" x2="436" y2="182" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="368" y1="295" x2="436" y2="295" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="368" y1="320" x2="436" y2="408" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<text class="ch" x="442" y="128">IF THE CAUSE WAS</text>
+<text class="ch" x="846" y="128">THE FIX IS</text>
+<rect x="442" y="142" width="340" height="80" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="c" x="612" y="176" text-anchor="middle">The specification never mentioned</text>
+<text class="c" x="612" y="198" text-anchor="middle">background execution</text>
+<rect x="442" y="255" width="340" height="80" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="c" x="612" y="289" text-anchor="middle">The tests covered</text>
+<text class="c" x="612" y="311" text-anchor="middle">only the endpoint</text>
+<rect x="442" y="368" width="340" height="80" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="c" x="612" y="402" text-anchor="middle">The agent could not run</text>
+<text class="c" x="612" y="424" text-anchor="middle">the worker locally</text>
+<line x1="782" y1="182" x2="838" y2="182" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#g)"/>
+<line x1="782" y1="295" x2="838" y2="295" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#g)"/>
+<line x1="782" y1="408" x2="838" y2="408" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#g)"/>
+<rect x="846" y="142" width="276" height="80" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="f" x="984" y="176" text-anchor="middle">A clearer acceptance criterion</text>
+<text class="fs" x="984" y="198" text-anchor="middle">applies to every future export change</text>
+<rect x="846" y="255" width="276" height="80" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="f" x="984" y="289" text-anchor="middle">A test that runs in CI</text>
+<text class="fs" x="984" y="311" text-anchor="middle">refuses the next regression</text>
+<rect x="846" y="368" width="276" height="80" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="f" x="984" y="402" text-anchor="middle">A runnable worker locally</text>
+<text class="fs" x="984" y="424" text-anchor="middle">lets the agent verify it next time</text>
+<text class="note" x="600" y="500" text-anchor="middle">What none of these are: another paragraph in an already long instruction file.</text>
+<text class="cap" x="600" y="578" text-anchor="middle">The immediate fix addresses the defect. The follow-up fixes the harness.</text>
+</svg>

@@ -1,0 +1,97 @@
+# Table of contents — the single source of truth for site/generate.py.
+#
+# Each chapter is a Markdown file in content/chapters/. Diagrams are referenced
+# from the Markdown as ![caption](diagram:<id>) and resolved against
+# content/diagrams/ (SVG sources) or the Part 7 generators.
+
+title: "Beyond Faster Coding"
+tagline: "Harness engineering, the Engineering Kit, workflows and the software factory — a seven-part series on what has to change around the coding agent."
+author: "Vishal Khondre"
+author_url: "https://www.linkedin.com/in/vishalkhondre/"
+repo_url: "https://github.com/vishalkhondre/ai-sdlc"
+site_url: "https://vishalkhondre.github.io/ai-sdlc"
+
+chapters:
+  - id: part-1
+    number: 1
+    slug: faster-coding-is-only-part
+    file: 01-faster-coding-is-only-part.md
+    title: "Faster coding is only part of the software delivery problem"
+    short: "The bottleneck moved"
+    summary: "Implementation got fast. The questions moved to everything around it. Four ideas that sit at different levels: harness engineering, the Engineering Kit, workflows and the software factory."
+    cover: bottleneck
+    key_terms: [harness-engineering, engineering-kit, workflow, software-factory, spec-driven-development, deterministic-gate]
+
+  - id: part-2
+    number: 2
+    slug: the-ai-sdlc
+    file: 02-the-ai-sdlc.md
+    title: "The AI SDLC: Same phases, different bottleneck"
+    short: "The AI SDLC"
+    summary: "Follow one hypothetical change, a customer-record export, through intent, specification, planning, implementation, verification, review, release and operations, and see where the pressure lands."
+    cover: sdlc-pressure-shift
+    key_terms: [specification-readiness, independent-basis, export-example]
+
+  - id: part-3
+    number: 3
+    slug: harness-engineering
+    file: 03-harness-engineering.md
+    title: "Harness engineering in the SDLC: Designing the environment around the agent"
+    short: "Harness engineering"
+    summary: "An agent is a model plus its surroundings. How to give it a usable starting point, separate instructions from permissions, decide how each rule is checked, make failures useful, and evaluate the harness itself."
+    cover: model-plus-surroundings
+    key_terms: [harness, harness-engineering, rule-route, gate, could-not-run, harness-evaluation, guides-and-sensors]
+
+  - id: part-4
+    number: 4
+    slug: engineering-kit
+    file: 04-engineering-kit.md
+    title: "Engineering Kit: Packaging the reusable engineering environment"
+    short: "Engineering Kit"
+    summary: "A versioned, installable package of reusable engineering capabilities: four layers, a rule registry, validators and skills with different acceptance bars, evidence as a by-product, and installation that proves something."
+    cover: engineering-kit-architecture
+    key_terms: [engineering-kit, rule-registry, validator, skill, evidence-record, adapter, mechanism-vs-meaning, harness-template]
+
+  - id: part-5
+    number: 5
+    slug: workflows
+    file: 05-workflows.md
+    title: "Workflows: Making one part of the SDLC repeatable, measurable and improvable"
+    short: "Workflows"
+    summary: "A workflow brings the kit's capabilities together for one delivery decision. One change walked through pull-request verification, the failure paths, the measures, and how workflows hand each other evidence."
+    cover: wf-one-change-walkthrough
+    key_terms: [workflow, risk-tier, failure-path, evidence-handoff, three-roles]
+
+  - id: part-6
+    number: 6
+    slug: software-factory
+    file: 06-software-factory.md
+    title: "Software factory: Connecting workflows across delivery and operations"
+    short: "Software factory"
+    summary: "What appears when enough workflows share rules, evidence and feedback. What it consists of, what it is not, the condition that makes it real, how roles shift, and two risks that scale with it."
+    cover: sf-tools-vs-system
+    key_terms: [software-factory, feedback-path, two-kinds-of-machinery, review-fatigue, skill-erosion, steering-loop]
+
+  - id: part-7
+    number: 7
+    slug: pull-request-verification
+    file: 07-pull-request-verification.md
+    title: "One workflow in full: Pull-request verification"
+    short: "One workflow in full"
+    summary: "A single workflow drawn at the level of detail where the description can be checked: what the run takes from the kit, one failing revision step by step, the ways out, the passing revision, and what to measure."
+    cover: p7-2-run-export
+    key_terms: [could-not-run, rule-route, evidence-record, review-skill, risk-tier]
+
+appendices:
+  - id: glossary
+    slug: glossary
+    title: "Terminology and sources"
+  - id: workflows
+    slug: workflow-catalog
+    title: "SDLC workflow catalog"
+  - id: reference
+    slug: pr-verification-reference
+    title: "Pull-request verification reference sheet"
+  - id: references
+    slug: references
+    title: "References"

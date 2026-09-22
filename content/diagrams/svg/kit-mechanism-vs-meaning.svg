@@ -1,0 +1,36 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:32px;font-weight:600;fill:#1f1f1c}
+.colh{font-size:20px;font-weight:600}.cols{font-size:14px}
+.rowk{font-size:16px;fill:#04342C}.rowp{font-size:16px;fill:#4A1B0C}
+.n{font-size:14px;fill:#5F5E5A}
+.cap{font-size:20px;fill:#5F5E5A}
+</style>
+<rect width="1200" height="628" fill="#fff"/>
+<text class="t" x="78" y="80">The kit supplies the mechanism. The project supplies the meaning.</text>
+<rect x="78" y="120" width="500" height="64" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/>
+<text class="colh" x="328" y="148" text-anchor="middle" fill="#04342C">From the kit</text>
+<text class="cols" x="328" y="170" text-anchor="middle" fill="#0F6E56">reusable across every project</text>
+<rect x="622" y="120" width="500" height="64" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="2"/>
+<text class="colh" x="872" y="148" text-anchor="middle" fill="#4A1B0C">From the project</text>
+<text class="cols" x="872" y="170" text-anchor="middle" fill="#993C1D">true only for this product</text>
+<line x1="78" y1="200" x2="1122" y2="200" stroke="#d3d1c7" stroke-width="1"/>
+<text class="rowk" x="102" y="236">A test pattern: attempt exports as several identities</text>
+<text class="rowp" x="646" y="236">Which identities may export which records</text>
+<line x1="78" y1="258" x2="1122" y2="258" stroke="#e8e6df" stroke-width="1"/>
+<text class="rowk" x="102" y="294">Fixture utilities and a consistent test runner</text>
+<text class="rowp" x="646" y="294">The synthetic customers and accounts to run them against</text>
+<line x1="78" y1="316" x2="1122" y2="316" stroke="#e8e6df" stroke-width="1"/>
+<text class="rowk" x="102" y="352">A dependency check for handlers importing models</text>
+<text class="rowp" x="646" y="352">Where handlers, services and models live in this repo</text>
+<line x1="78" y1="374" x2="1122" y2="374" stroke="#e8e6df" stroke-width="1"/>
+<text class="rowk" x="102" y="410">A load-test runner and a latency report format</text>
+<text class="rowp" x="646" y="410">The workload that matters and the limit that is acceptable</text>
+<line x1="78" y1="432" x2="1122" y2="432" stroke="#e8e6df" stroke-width="1"/>
+<text class="rowk" x="102" y="468">The rule identifier SEC-004 and its evidence schema</text>
+<text class="rowp" x="646" y="468">Which fields are excluded, what background jobs may do</text>
+<line x1="78" y1="490" x2="1122" y2="490" stroke="#d3d1c7" stroke-width="1"/>
+<line x1="600" y1="200" x2="600" y2="490" stroke="#d3d1c7" stroke-width="1" stroke-dasharray="4 4"/>
+<text class="n" x="600" y="524" text-anchor="middle">Both halves use the same execution and evidence conventions. Neither can stand in for the other.</text>
+<text class="cap" x="600" y="580" text-anchor="middle">A kit cannot infer product decisions because it has an authorization skill.</text>
+</svg>

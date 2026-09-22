@@ -1,0 +1,43 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:32px;font-weight:600;fill:#1f1f1c}
+.h{font-size:20px;font-weight:600}.d{font-size:15px}.l{font-size:14px;fill:#5F5E5A}
+.fail{font-size:14px;fill:#993C1D}
+.cap{font-size:20px;fill:#5F5E5A}
+</style>
+<rect width="1200" height="628" fill="#fff"/>
+<text class="t" x="78" y="80">Three roles in every workflow, and what happens when they blur</text>
+<rect x="78" y="130" width="330" height="230" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+<text class="h" x="243" y="164" text-anchor="middle" fill="#26215C">The agent</text>
+<text class="l" x="243" y="188" text-anchor="middle">costly for a person, tolerable if slightly wrong</text>
+<text class="d" x="102" y="222" fill="#26215C">• Reads the full diff against the spec</text>
+<text class="d" x="102" y="248" fill="#26215C">• Traces the path from endpoint to worker</text>
+<text class="d" x="102" y="274" fill="#26215C">• Drafts findings with locations and reasons</text>
+<text class="d" x="102" y="300" fill="#26215C">• Proposes test scenarios from criteria</text>
+<text class="l" x="243" y="340" text-anchor="middle">Proposes. Never verifies.</text>
+<rect x="435" y="130" width="330" height="230" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.5"/>
+<text class="h" x="600" y="164" text-anchor="middle" fill="#4A1B0C">The checks</text>
+<text class="l" x="600" y="188" text-anchor="middle">must not be wrong; run the same way every time</text>
+<text class="d" x="459" y="222" fill="#4A1B0C">• Access test across identities and records</text>
+<text class="d" x="459" y="248" fill="#4A1B0C">• Dependency rules, secrets, quality command</text>
+<text class="d" x="459" y="274" fill="#4A1B0C">• Expected checks recorded before results</text>
+<text class="d" x="459" y="300" fill="#4A1B0C">• Passed, failed, could not run: distinct</text>
+<text class="l" x="600" y="340" text-anchor="middle">Enforces. Never judges intent.</text>
+<rect x="792" y="130" width="330" height="230" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="h" x="957" y="164" text-anchor="middle" fill="#04342C">The people</text>
+<text class="l" x="957" y="188" text-anchor="middle">context the workflow cannot hold</text>
+<text class="d" x="816" y="222" fill="#04342C">• Is this the right design and trade-off?</text>
+<text class="d" x="816" y="248" fill="#04342C">• Do the scenarios cover the real boundary?</text>
+<text class="d" x="816" y="274" fill="#04342C">• Permissions at queue or execution time?</text>
+<text class="d" x="816" y="300" fill="#04342C">• Approve, reject, or record an exception</text>
+<text class="l" x="957" y="340" text-anchor="middle">Decides. Never proofreads.</text>
+<line x1="78" y1="396" x2="1122" y2="396" stroke="#d3d1c7" stroke-width="1"/>
+<text class="l" x="78" y="426" style="font-weight:600">When the roles blur</text>
+<rect x="78" y="442" width="510" height="72" rx="10" fill="#fff" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text class="fail" x="333" y="470" text-anchor="middle" style="font-weight:600">Agent treated as verifier</text>
+<text class="fail" x="333" y="494" text-anchor="middle">A confident summary is read as proof. Nothing ran.</text>
+<rect x="612" y="442" width="510" height="72" rx="10" fill="#fff" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text class="fail" x="867" y="470" text-anchor="middle" style="font-weight:600">People treated as checks</text>
+<text class="fail" x="867" y="494" text-anchor="middle">Review becomes proofreading generated code a machine should have caught.</text>
+<text class="cap" x="600" y="580" text-anchor="middle">Each has limits. The workflow's job is to make those limits visible, not to hide them behind one green tick.</text>
+</svg>

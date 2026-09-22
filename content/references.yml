@@ -1,0 +1,61 @@
+# Canonical reference list. Every [^key] footnote in a chapter and every
+# `source:` in glossary.yml must resolve to a key here. scripts/check_citations.py
+# enforces this.
+
+bockeler-harness:
+  title: "Harness Engineering for Coding Agent Users"
+  author: "Birgitta Böckeler"
+  org: "Thoughtworks, published on martinfowler.com"
+  date: "2026-04-02"
+  url: "https://martinfowler.com/articles/harness-engineering.html"
+  note: "Defines the harness as everything in an agent except the model, and introduces guides (feedforward) and sensors (feedback), computational vs inferential controls, the steering loop, harnessability, ambient affordances and harness templates."
+
+bockeler-sensors:
+  title: "Maintainability Sensors for Coding Agents"
+  author: "Birgitta Böckeler"
+  org: "Thoughtworks, published on martinfowler.com"
+  date: "2026-05-27"
+  url: "https://martinfowler.com/articles/sensors-for-coding-agents.html"
+  note: "Worked examples of computational and inferential sensors on a real codebase."
+
+bockeler-context:
+  title: "Context Engineering for Coding Agents"
+  author: "Birgitta Böckeler"
+  org: "Thoughtworks, published on martinfowler.com"
+  url: "https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html"
+  note: "How guides and sensors are made discoverable to an agent; the case for loading context on demand rather than always-on."
+
+openai-harness:
+  title: "Harness engineering: leveraging Codex in an agent-first world"
+  author: "OpenAI"
+  date: "2026-02"
+  url: "https://openai.com/index/harness-engineering/"
+  note: "An account of organizing repository knowledge, making application behavior accessible to agents and enforcing architectural constraints through automated checks."
+
+fowler-ci:
+  title: "Continuous Integration"
+  author: "Martin Fowler"
+  org: "martinfowler.com"
+  url: "https://martinfowler.com/articles/continuousIntegration.html"
+  note: "The origin of most of the deterministic floor this series takes for granted: a build that runs the same way everywhere and fails fast."
+
+fowler-fitness:
+  title: "Fitness Function"
+  author: "Neal Ford, Rebecca Parsons, Patrick Kua (Building Evolutionary Architectures)"
+  org: "Thoughtworks"
+  url: "https://www.thoughtworks.com/insights/articles/fitness-function-driven-development"
+  note: "Architecture rules expressed as executable checks; what this series calls architecture validators and Böckeler calls the architecture fitness harness."
+
+spec-kit:
+  title: "Spec Kit — Spec-Driven Development toolkit"
+  author: "GitHub"
+  org: "GitHub (open source)"
+  url: "https://github.com/github/spec-kit"
+  note: "The origin of the spec → clarify → plan → tasks → implement sequence the series refers to as spec-driven development. Named here as a source; the series text stays tool-neutral."
+
+ashby:
+  title: "An Introduction to Cybernetics (Law of Requisite Variety)"
+  author: "W. Ross Ashby"
+  date: "1956"
+  url: "https://en.wikipedia.org/wiki/Variety_(cybernetics)#Law_of_requisite_variety"
+  note: "Cited by Böckeler for why a regulator needs as much variety as the system it governs; the reason narrowing what an agent may produce makes it easier to control."

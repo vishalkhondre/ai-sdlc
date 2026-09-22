@@ -1,0 +1,46 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:32px;font-weight:600;fill:#1f1f1c}
+.hub{font-size:24px;font-weight:600;fill:#26215C}.hubs{font-size:14px;fill:#534AB7}
+.bh{font-size:17px;font-weight:600}.bs{font-size:13.5px}
+.n{font-size:14px;fill:#5F5E5A}
+.cap{font-size:20px;fill:#5F5E5A}
+</style>
+<rect width="1200" height="628" fill="#fff"/>
+<text class="t" x="78" y="80">One identifier connects policy, guidance, checks and evidence</text>
+<line x1="600" y1="292" x2="230" y2="200" stroke="#b4b2a9" stroke-width="1.5"/>
+<line x1="600" y1="292" x2="230" y2="400" stroke="#b4b2a9" stroke-width="1.5"/>
+<line x1="600" y1="292" x2="970" y2="200" stroke="#b4b2a9" stroke-width="1.5"/>
+<line x1="600" y1="292" x2="970" y2="400" stroke="#b4b2a9" stroke-width="1.5"/>
+<line x1="600" y1="292" x2="600" y2="470" stroke="#b4b2a9" stroke-width="1.5"/>
+<rect x="470" y="242" width="260" height="100" rx="14" fill="#EEEDFE" stroke="#534AB7" stroke-width="2.5"/>
+<text class="hub" x="600" y="282" text-anchor="middle">SEC-004</text>
+<text class="hubs" x="600" y="306" text-anchor="middle">Users may export only</text>
+<text class="hubs" x="600" y="324" text-anchor="middle">authorized records</text>
+<rect x="90" y="150" width="280" height="100" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="bh" x="230" y="178" text-anchor="middle" fill="#1f1f1c">Operating model</text>
+<text class="bs" x="230" y="202" text-anchor="middle" fill="#5F5E5A">Data-access changes need a review.</text>
+<text class="bs" x="230" y="222" text-anchor="middle" fill="#5F5E5A">Owner: security-lead</text>
+<text class="bs" x="230" y="240" text-anchor="middle" fill="#888780">says what must be true</text>
+<rect x="90" y="350" width="280" height="100" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+<text class="bh" x="230" y="378" text-anchor="middle" fill="#26215C">Skill: authorization-pattern</text>
+<text class="bs" x="230" y="402" text-anchor="middle" fill="#534AB7">supports_rules: [SEC-004]</text>
+<text class="bs" x="230" y="422" text-anchor="middle" fill="#534AB7">loads when a change touches data access</text>
+<text class="bs" x="230" y="440" text-anchor="middle" fill="#888780">helps the agent get it right</text>
+<rect x="830" y="150" width="280" height="100" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="1.5"/>
+<text class="bh" x="970" y="178" text-anchor="middle" fill="#4A1B0C">Validator: export-access-tests</text>
+<text class="bs" x="970" y="202" text-anchor="middle" fill="#993C1D">checks: [SEC-004]</text>
+<text class="bs" x="970" y="222" text-anchor="middle" fill="#993C1D">implementation: project fixtures</text>
+<text class="bs" x="970" y="240" text-anchor="middle" fill="#888780">blocks the merge on a leak</text>
+<rect x="830" y="350" width="280" height="100" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="bh" x="970" y="378" text-anchor="middle" fill="#04342C">Judgment</text>
+<text class="bs" x="970" y="402" text-anchor="middle" fill="#0F6E56">Approve access policy and test scope</text>
+<text class="bs" x="970" y="422" text-anchor="middle" fill="#0F6E56">owner: product-and-security</text>
+<text class="bs" x="970" y="440" text-anchor="middle" fill="#888780">decides what the check cannot</text>
+<rect x="440" y="470" width="320" height="64" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="bh" x="600" y="496" text-anchor="middle" fill="#1f1f1c">Evidence, per change</text>
+<text class="bs" x="600" y="518" text-anchor="middle" fill="#5F5E5A">SEC-004 · export-access-tests · passed · kit 0.2.0</text>
+<text class="n" x="616" y="400">known gap: background</text>
+<text class="n" x="616" y="418">workers not covered</text>
+<text class="cap" x="600" y="588" text-anchor="middle">When a defect escapes, "which rule should have caught this" has a place to land.</text>
+</svg>

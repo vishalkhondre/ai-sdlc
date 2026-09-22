@@ -1,0 +1,40 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:32px;font-weight:600;fill:#1f1f1c}
+.lab{font-size:18px;font-weight:600;fill:#5F5E5A}
+.b{font-size:15px;fill:#1f1f1c}.bs{font-size:12px;fill:#888780}
+.g{font-size:15px;fill:#04342C}.gs{font-size:12px;fill:#0F6E56}
+.n{font-size:14px;fill:#5F5E5A}.nr{font-size:14px;fill:#993C1D}
+.cap{font-size:20px;fill:#5F5E5A}
+</style>
+<rect width="1200" height="628" fill="#fff"/>
+<defs><marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#0F6E56" stroke-width="1.5"/></marker></defs>
+<text class="t" x="78" y="80">A collection of tools, or a connected system</text>
+<text class="lab" x="78" y="132">Same tools, unconnected</text>
+<rect x="78" y="150" width="150" height="62" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="b" x="153" y="176" text-anchor="middle">Coding agent</text><text class="bs" x="153" y="196" text-anchor="middle">own instructions</text>
+<rect x="244" y="150" width="150" height="62" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="b" x="319" y="176" text-anchor="middle">Spec tool</text><text class="bs" x="319" y="196" text-anchor="middle">own templates</text>
+<rect x="410" y="150" width="150" height="62" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="b" x="485" y="176" text-anchor="middle">Review bot</text><text class="bs" x="485" y="196" text-anchor="middle">own rules</text>
+<rect x="78" y="232" width="150" height="62" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="b" x="153" y="258" text-anchor="middle">CI pipeline</text><text class="bs" x="153" y="278" text-anchor="middle">own checks</text>
+<rect x="244" y="232" width="150" height="62" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="b" x="319" y="258" text-anchor="middle">Test automation</text><text class="bs" x="319" y="278" text-anchor="middle">own reports</text>
+<rect x="410" y="232" width="150" height="62" rx="9" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="b" x="485" y="258" text-anchor="middle">Incident tracker</text><text class="bs" x="485" y="278" text-anchor="middle">own findings</text>
+<text class="nr" x="319" y="330" text-anchor="middle">Six sets of rules. Six evidence formats.</text>
+<text class="nr" x="319" y="352" text-anchor="middle">A production lesson has nowhere to go.</text>
+<line x1="600" y1="120" x2="600" y2="380" stroke="#d3d1c7" stroke-width="1"/>
+<text class="lab" x="640" y="132">Same tools, connected</text>
+<rect x="640" y="150" width="482" height="34" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+<text class="b" x="881" y="173" text-anchor="middle" fill="#26215C">Shared rule registry: one identifier per rule, one owner</text>
+<rect x="640" y="200" width="150" height="62" rx="9" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/><text class="g" x="715" y="226" text-anchor="middle">Readiness</text><text class="gs" x="715" y="246" text-anchor="middle">agent + checks + owner</text>
+<rect x="806" y="200" width="150" height="62" rx="9" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/><text class="g" x="881" y="226" text-anchor="middle">Verification</text><text class="gs" x="881" y="246" text-anchor="middle">agent + checks + owner</text>
+<rect x="972" y="200" width="150" height="62" rx="9" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/><text class="g" x="1047" y="226" text-anchor="middle">Release</text><text class="gs" x="1047" y="246" text-anchor="middle">agent + checks + owner</text>
+<line x1="790" y1="231" x2="800" y2="231" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#g)"/>
+<line x1="956" y1="231" x2="966" y2="231" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#g)"/>
+<rect x="640" y="278" width="482" height="34" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+<text class="b" x="881" y="301" text-anchor="middle" fill="#26215C">Shared evidence schema: every run leaves the same kind of record</text>
+<path d="M1122 231 L1146 231 L1146 340 L616 340 L616 231 L634 231" fill="none" stroke="#993C1D" stroke-width="1.5" stroke-dasharray="6 4"/>
+<polygon points="628,225 640,231 628,237" fill="#993C1D"/>
+<text class="nr" x="881" y="364" text-anchor="middle">One feedback path: what production teaches changes what readiness asks</text>
+<rect x="78" y="400" width="1044" height="64" rx="12" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="n" x="600" y="426" text-anchor="middle">The tools on the left and right are identical. What differs is what they share.</text>
+<text class="n" x="600" y="448" text-anchor="middle">Nobody builds the right side directly. It appears when the second and third workflow start reading the same registry and the same records.</text>
+<text class="cap" x="600" y="548" text-anchor="middle">It looks like a software factory. Until the sharing exists, it is a collection of tools.</text>
+</svg>

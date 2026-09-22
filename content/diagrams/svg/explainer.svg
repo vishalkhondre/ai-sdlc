@@ -1,0 +1,149 @@
+<svg width="1200" height="1330" viewBox="0 0 1200 1330" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:30px;font-weight:600;fill:#1f1f1c}
+.sec{font-size:19px;font-weight:600;fill:#1f1f1c}
+.b{font-size:15px;fill:#1f1f1c}
+.lab{font-size:12.5px;fill:#5F5E5A;letter-spacing:.3px}
+.kind{font-size:12.5px}
+.name{font-size:20px;font-weight:600}
+.ana{font-size:12.5px}
+.conn{font-size:13px;fill:#5F5E5A}
+.ph{font-size:14px;fill:#1f1f1c}
+.phh{font-size:14px;fill:#26215C;font-weight:600}
+.chev{font-size:16px;fill:#888780}
+.foot{font-size:14px;fill:#5F5E5A}
+</style>
+<rect width="1200" height="1330" fill="#fff"/>
+<text class="t" x="60" y="60">Harness, kit, workflows, factory: four things at four levels</text>
+
+<!-- Starting point -->
+<rect x="60" y="90" width="1080" height="96" rx="12" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="sec" x="84" y="122">Starting point</text>
+<text class="b" x="84" y="150">An AI coding agent is a model plus everything around it: rules, tools, tests, permissions, feedback. The model is the engine.</text>
+<text class="b" x="84" y="172">The surroundings decide whether its output can be trusted. This picture is about the surroundings, and where they sit in the lifecycle.</text>
+<text class="conn" x="600" y="214" text-anchor="middle">▼</text>
+
+<!-- SDLC band -->
+<rect x="60" y="228" width="1080" height="190" rx="12" fill="#fff" stroke="#5F5E5A" stroke-width="1.5"/>
+<text class="sec" x="84" y="260">The AI SDLC: same phases, different bottleneck</text>
+<g>
+<rect x="84" y="278" width="100" height="34" rx="7" fill="#faf9f5" stroke="#b4b2a9"/><text class="ph" x="134" y="300" text-anchor="middle">Intent</text>
+<text class="chev" x="196" y="300" text-anchor="middle">›</text>
+<rect x="208" y="278" width="100" height="34" rx="7" fill="#faf9f5" stroke="#b4b2a9"/><text class="ph" x="258" y="300" text-anchor="middle">Specify</text>
+<text class="chev" x="320" y="300" text-anchor="middle">›</text>
+<rect x="332" y="278" width="100" height="34" rx="7" fill="#faf9f5" stroke="#b4b2a9"/><text class="ph" x="382" y="300" text-anchor="middle">Plan</text>
+<text class="chev" x="444" y="300" text-anchor="middle">›</text>
+<rect x="456" y="278" width="120" height="34" rx="7" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/><text class="phh" x="516" y="300" text-anchor="middle">Implement</text>
+<text class="chev" x="588" y="300" text-anchor="middle">›</text>
+<rect x="600" y="278" width="100" height="34" rx="7" fill="#faf9f5" stroke="#b4b2a9"/><text class="ph" x="650" y="300" text-anchor="middle">Verify</text>
+<text class="chev" x="712" y="300" text-anchor="middle">›</text>
+<rect x="724" y="278" width="100" height="34" rx="7" fill="#faf9f5" stroke="#b4b2a9"/><text class="ph" x="774" y="300" text-anchor="middle">Review</text>
+<text class="chev" x="836" y="300" text-anchor="middle">›</text>
+<rect x="848" y="278" width="100" height="34" rx="7" fill="#faf9f5" stroke="#b4b2a9"/><text class="ph" x="898" y="300" text-anchor="middle">Release</text>
+<text class="chev" x="960" y="300" text-anchor="middle">›</text>
+<rect x="972" y="278" width="100" height="34" rx="7" fill="#faf9f5" stroke="#b4b2a9"/><text class="ph" x="1022" y="300" text-anchor="middle">Operate</text>
+</g>
+<text class="lab" x="84" y="344">WHAT GOT FAST</text>
+<text class="b" x="84" y="366">Implementation: an agent generates</text>
+<text class="b" x="84" y="386">the code in hours, not weeks.</text>
+<text class="lab" x="440" y="344">WHAT STAYED HUMAN-PACED</text>
+<text class="b" x="440" y="366">Intent, architecture, verification, review.</text>
+<text class="b" x="440" y="386">The bottleneck moved upstream and downstream.</text>
+<text class="lab" x="800" y="344">WHAT THIS MEANS</text>
+<text class="b" x="800" y="366">Specs and tests become the interface to the agent;</text>
+<text class="b" x="800" y="386">the surroundings must exist in every phase.</text>
+<text class="conn" x="600" y="446" text-anchor="middle">building those surroundings is</text>
+
+<!-- Harness engineering -->
+<rect x="60" y="460" width="1080" height="150" rx="12" fill="#fff" stroke="#534AB7" stroke-width="1.2"/>
+<rect x="60" y="460" width="220" height="150" rx="12" fill="#EEEDFE"/>
+<rect x="268" y="460" width="12" height="150" fill="#EEEDFE"/>
+<text class="kind" x="82" y="490" fill="#534AB7">a discipline</text>
+<text class="name" x="82" y="518" fill="#26215C">Harness engineering</text>
+<text class="ana" x="82" y="546" fill="#534AB7">like designing the</text>
+<text class="ana" x="82" y="564" fill="#534AB7">assembly line</text>
+<text class="lab" x="304" y="490">IN PLAIN WORDS</text>
+<text class="b" x="304" y="512">Deciding what an agent may do, what a</text>
+<text class="b" x="304" y="532">machine must check, what stays with a</text>
+<text class="b" x="304" y="552">human, and how failures become new checks.</text>
+<text class="lab" x="600" y="490">MADE OF</text>
+<text class="b" x="600" y="512">Practices: route each rule to a gate or a</text>
+<text class="b" x="600" y="532">judgment call; write evals; turn every defect</text>
+<text class="b" x="600" y="552">into a validator, eval or rule.</text>
+<text class="lab" x="880" y="490">YOU HAVE IT WHEN</text>
+<text class="b" x="880" y="512">Someone owns the practice</text>
+<text class="b" x="880" y="532">and the environment has a</text>
+<text class="b" x="880" y="552">changelog.</text>
+<text class="conn" x="600" y="638" text-anchor="middle">produces</text>
+
+<!-- Engineering Kit -->
+<rect x="60" y="652" width="1080" height="150" rx="12" fill="#fff" stroke="#0F6E56" stroke-width="1.2"/>
+<rect x="60" y="652" width="220" height="150" rx="12" fill="#E1F5EE"/>
+<rect x="268" y="652" width="12" height="150" fill="#E1F5EE"/>
+<text class="kind" x="82" y="682" fill="#0F6E56">an artefact</text>
+<text class="name" x="82" y="710" fill="#04342C">Engineering Kit</text>
+<text class="ana" x="82" y="738" fill="#0F6E56">like the jigs and</text>
+<text class="ana" x="82" y="756" fill="#0F6E56">tooling on the line</text>
+<text class="lab" x="304" y="682">IN PLAIN WORDS</text>
+<text class="b" x="304" y="704">The versioned, installable package of that</text>
+<text class="b" x="304" y="724">environment, so every team and tool uses the</text>
+<text class="b" x="304" y="744">same rules and checks in every phase.</text>
+<text class="lab" x="600" y="682">MADE OF</text>
+<text class="b" x="600" y="704">Standards and constitution, rule registry,</text>
+<text class="b" x="600" y="724">validators, skills, evals, commands,</text>
+<text class="b" x="600" y="744">evidence format, adapters per tool.</text>
+<text class="lab" x="880" y="682">YOU HAVE IT WHEN</text>
+<text class="b" x="880" y="704">A second team installs it and</text>
+<text class="b" x="880" y="724">their first feature passes the same</text>
+<text class="b" x="880" y="744">gates without the author present.</text>
+<text class="conn" x="600" y="830" text-anchor="middle">enables</text>
+
+<!-- Workflows -->
+<rect x="60" y="844" width="1080" height="150" rx="12" fill="#fff" stroke="#993C1D" stroke-width="1.2"/>
+<rect x="60" y="844" width="220" height="150" rx="12" fill="#FAECE7"/>
+<rect x="268" y="844" width="12" height="150" fill="#FAECE7"/>
+<text class="kind" x="82" y="874" fill="#993C1D">units of work</text>
+<text class="name" x="82" y="902" fill="#4A1B0C">Workflows</text>
+<text class="ana" x="82" y="930" fill="#993C1D">like one station</text>
+<text class="ana" x="82" y="948" fill="#993C1D">on the line</text>
+<text class="lab" x="304" y="874">IN PLAIN WORDS</text>
+<text class="b" x="304" y="896">One SDLC decision run end to end with the</text>
+<text class="b" x="304" y="916">kit: a trigger, an agent action, a machine</text>
+<text class="b" x="304" y="936">gate, a human decision, an evidence record.</text>
+<text class="lab" x="600" y="874">EXAMPLES, BY PHASE</text>
+<text class="b" x="600" y="896">Specify: spec readiness check.</text>
+<text class="b" x="600" y="916">Review: pull-request verification.</text>
+<text class="b" x="600" y="936">Verify: acceptance-test generation.</text>
+<text class="lab" x="880" y="874">YOU HAVE IT WHEN</text>
+<text class="b" x="880" y="896">The same workflow has run</text>
+<text class="b" x="880" y="916">repeatedly, leaves evidence each</text>
+<text class="b" x="880" y="936">time, and has a metric.</text>
+<text class="conn" x="600" y="1022" text-anchor="middle">several phases, connected, become</text>
+
+<!-- Software factory -->
+<rect x="60" y="1036" width="1080" height="150" rx="12" fill="#fff" stroke="#5F5E5A" stroke-width="1.2" stroke-dasharray="6 4"/>
+<rect x="60" y="1036" width="220" height="150" rx="12" fill="#F1EFE8"/>
+<rect x="268" y="1036" width="12" height="150" fill="#F1EFE8"/>
+<text class="kind" x="82" y="1066" fill="#5F5E5A">an operating model</text>
+<text class="name" x="82" y="1094" fill="#2C2C2A">Software factory</text>
+<text class="ana" x="82" y="1122" fill="#5F5E5A">like the whole</text>
+<text class="ana" x="82" y="1140" fill="#5F5E5A">plant running</text>
+<text class="lab" x="304" y="1066">IN PLAIN WORDS</text>
+<text class="b" x="304" y="1088">The way of working that appears once</text>
+<text class="b" x="304" y="1108">workflows share one evidence model and one</text>
+<text class="b" x="304" y="1128">feedback loop. Agents implement inside gates.</text>
+<text class="lab" x="600" y="1066">NOT A THING YOU BUILD</text>
+<text class="b" x="600" y="1088">Nobody builds the factory directly.</text>
+<text class="b" x="600" y="1108">It is the boundary that becomes real</text>
+<text class="b" x="600" y="1128">when enough phases interlock.</text>
+<text class="lab" x="880" y="1066">YOU HAVE IT WHEN</text>
+<text class="b" x="880" y="1088">A defect found at Operate</text>
+<text class="b" x="880" y="1108">changes what the Specify check</text>
+<text class="b" x="880" y="1128">looks for next time.</text>
+
+<!-- feedback -->
+<path d="M1140 1111 L1170 1111 L1170 295 L1142 295" fill="none" stroke="#993C1D" stroke-width="1.5" stroke-dasharray="6 4"/>
+<polygon points="1148,289 1136,295 1148,301" fill="#993C1D"/>
+<text class="foot" x="600" y="1240" text-anchor="middle">↻  What Operate observes flows back up the lifecycle: new rules, validators and evals for the discipline to adopt.</text>
+<text class="foot" x="600" y="1290" text-anchor="middle" style="font-size:13px;fill:#888780">Harness engineering after Böckeler (martinfowler.com, 2026) and OpenAI (2026). Engineering Kit, workflow and software factory as used in this series.</text>
+</svg>

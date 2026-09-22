@@ -1,0 +1,71 @@
+<svg width="1200" height="1080" viewBox="0 0 1200 1080" xmlns="http://www.w3.org/2000/svg">
+<style>
+.sec{font-size:20px;font-weight:600;fill:#1f1f1c}
+.row{font-size:17px;font-weight:600;fill:#1f1f1c}
+.box{font-size:17px;fill:#1f1f1c}
+.sub{font-size:15px;fill:#5F5E5A}
+.note{font-size:15px;fill:#5F5E5A}
+.bp{font-size:16px;fill:#26215C}.bc{font-size:16px;fill:#4A1B0C}.bt{font-size:16px;fill:#04342C}.bg{font-size:16px;fill:#444441}
+.ch{font-size:26px;fill:#888780}
+</style>
+<rect width="1200" height="1080" fill="#fff"/>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#888780" stroke-width="1.5"/></marker>
+</defs>
+<rect x="60" y="40" width="1080" height="54" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="sec" x="84" y="73">Operating model — policies, risk tiers, decision rights</text>
+<text class="sub" x="1116" y="73" text-anchor="end">supplies rule identifiers and owners; keeps approval authority</text>
+<text class="sec" x="60" y="136">Process spine — spec-driven flow</text>
+<rect x="60" y="150" width="150" height="60" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="box" x="135" y="186" text-anchor="middle">Specify</text>
+<rect x="246" y="150" width="150" height="60" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="box" x="321" y="186" text-anchor="middle">Plan / tasks</text>
+<rect x="432" y="150" width="150" height="60" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="box" x="507" y="186" text-anchor="middle">Implement</text>
+<rect x="618" y="150" width="150" height="60" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="box" x="693" y="186" text-anchor="middle">Verify</text>
+<rect x="804" y="150" width="150" height="60" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="box" x="879" y="186" text-anchor="middle">Review / gate</text>
+<rect x="990" y="150" width="150" height="60" rx="10" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/><text class="box" x="1065" y="186" text-anchor="middle">Release</text>
+<text class="ch" x="228" y="188" text-anchor="middle">&#8250;</text>
+<text class="ch" x="414" y="188" text-anchor="middle">&#8250;</text>
+<text class="ch" x="600" y="188" text-anchor="middle">&#8250;</text>
+<text class="ch" x="786" y="188" text-anchor="middle">&#8250;</text>
+<text class="ch" x="972" y="188" text-anchor="middle">&#8250;</text>
+<line x1="321" y1="290" x2="321" y2="220" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="879" y1="290" x2="879" y2="220" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<text class="note" x="600" y="258" text-anchor="middle">enforce: validators · gates · evidence · evaluations</text>
+<rect x="60" y="290" width="1080" height="560" rx="22" fill="#f3f1ea" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="sec" x="90" y="326">Engineering Kit — versioned, tool-neutral package</text>
+<text class="sub" x="1110" y="326" text-anchor="end">kit version recorded in every evidence record</text>
+<rect x="90" y="346" width="1020" height="40" rx="8" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="sub" x="600" y="371" text-anchor="middle">Commands — init · doctor · verify   (entry points for people, agents and CI)</text>
+<rect x="90" y="406" width="6" height="88" fill="#534AB7"/>
+<text class="row" x="110" y="422">Shared core</text>
+<rect x="110" y="436" width="184" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/><text class="bp" x="202" y="467" text-anchor="middle">Rule registry</text>
+<rect x="314" y="436" width="184" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/><text class="bp" x="406" y="467" text-anchor="middle">Evidence schema</text>
+<rect x="518" y="436" width="184" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/><text class="bp" x="610" y="467" text-anchor="middle">Result states</text>
+<rect x="722" y="436" width="184" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/><text class="bp" x="814" y="467" text-anchor="middle">Command interfaces</text>
+<rect x="926" y="436" width="184" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/><text class="bp" x="1018" y="467" text-anchor="middle">Releases &amp; changelog</text>
+<rect x="90" y="514" width="6" height="88" fill="#993C1D"/>
+<text class="row" x="110" y="530">Technology profiles — per supported stack</text>
+<rect x="110" y="544" width="235" height="52" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1.2"/><text class="bc" x="227" y="575" text-anchor="middle">Validators (deterministic)</text>
+<rect x="365" y="544" width="235" height="52" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1.2"/><text class="bc" x="482" y="575" text-anchor="middle">Skills (eval-gated)</text>
+<rect x="620" y="544" width="235" height="52" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1.2"/><text class="bc" x="737" y="575" text-anchor="middle">Evaluation scenarios</text>
+<rect x="875" y="544" width="235" height="52" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1.2"/><text class="bc" x="992" y="575" text-anchor="middle">Guidance &amp; examples</text>
+<rect x="90" y="622" width="6" height="88" fill="#0F6E56"/>
+<text class="row" x="110" y="638">Tool adapters — thin bindings</text>
+<rect x="110" y="652" width="235" height="52" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/><text class="bt" x="227" y="683" text-anchor="middle">Agentic IDE</text>
+<rect x="365" y="652" width="235" height="52" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/><text class="bt" x="482" y="683" text-anchor="middle">Coding agent</text>
+<rect x="620" y="652" width="235" height="52" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/><text class="bt" x="737" y="683" text-anchor="middle">CI / CD</text>
+<rect x="875" y="652" width="235" height="52" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/><text class="bt" x="992" y="683" text-anchor="middle">App builder</text>
+<rect x="90" y="730" width="6" height="88" fill="#888780"/>
+<text class="row" x="110" y="746">Project configuration — owned by the adopting project</text>
+<rect x="110" y="760" width="235" height="52" rx="8" fill="#fff" stroke="#888780" stroke-width="1.2" stroke-dasharray="5 4"/><text class="bg" x="227" y="791" text-anchor="middle">Applicable rules</text>
+<rect x="365" y="760" width="235" height="52" rx="8" fill="#fff" stroke="#888780" stroke-width="1.2" stroke-dasharray="5 4"/><text class="bg" x="482" y="791" text-anchor="middle">Local paths</text>
+<rect x="620" y="760" width="235" height="52" rx="8" fill="#fff" stroke="#888780" stroke-width="1.2" stroke-dasharray="5 4"/><text class="bg" x="737" y="791" text-anchor="middle">Fixtures &amp; test bindings</text>
+<rect x="875" y="760" width="235" height="52" rx="8" fill="#fff" stroke="#888780" stroke-width="1.2" stroke-dasharray="5 4"/><text class="bg" x="992" y="791" text-anchor="middle">Thresholds &amp; exceptions</text>
+<line x1="321" y1="850" x2="321" y2="898" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="879" y1="850" x2="879" y2="898" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<text class="note" x="600" y="880" text-anchor="middle">provision: rules · validators · skills · commands</text>
+<rect x="60" y="900" width="1080" height="66" rx="12" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="sec" x="600" y="928" text-anchor="middle">Execution surfaces — agentic IDE · coding agent · CI runner · app builder</text>
+<text class="sub" x="600" y="952" text-anchor="middle">run each phase · agent loop · tool calling · the same validators everywhere</text>
+<rect x="60" y="990" width="1080" height="50" rx="12" fill="#faf9f5" stroke="#b4b2a9" stroke-width="1.5"/>
+<text class="sub" x="600" y="1021" text-anchor="middle">Kit loop: author → test the kit → release a version → init / doctor → verify → evidence → escaped defects shape the next version</text>
+</svg>

@@ -1,0 +1,1629 @@
+phases:
+- key: '0'
+  name: Concept & intake
+- key: '1'
+  name: Specify
+- key: '2'
+  name: Plan & design
+- key: '3'
+  name: Develop
+- key: '4'
+  name: Verify
+- key: '5'
+  name: Review
+- key: '6'
+  name: Release
+- key: '7'
+  name: Operate & sustain
+- key: X
+  name: Cross-lifecycle
+maturity:
+  Floor: Deterministic checks only, no agent needed, build first
+  First: First workflows to run end to end
+  Later: Needs evals, environments or organizational readiness that usually does not exist yet
+sources:
+  PRM: Process reference map (7 phases × 6 roles)
+  SDL: Secure development lifecycle activities
+  STLC: Software testing life cycle
+  AGN: Agentic vs traditional SDLC loop
+  SIX: Six-phase SDLC model
+  SEV: Seven-phase process model
+  FRP: Gated feature release pipeline
+workflows:
+- id: W01
+  phase: '0'
+  name: Intake and classification
+  decision: What kind of work is this, and which lane does it enter?
+  trigger: Item enters the backlog
+  agent: Draft classification (feature, bug, spike, production bug); propose change categories, size and initial risk tier
+    from the description
+  checks: Required intake fields present; size within the feature cap; categories from the allowed set
+  people: Product owner classifies; tech lead confirms lane
+  evidence: Intake record
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Backlog grooming; project initiation; rough-order-of-magnitude estimate; scope and MVP definition
+    owner: PM / BA; sponsor
+    artefact: Backlog item; ROM estimate; project management plan
+  notes: Absorbs change-risk classification. Sizing rule lives here.
+- id: W02
+  phase: '0'
+  name: Security discovery and baseline
+  decision: Which security objectives, regulations and baseline requirements apply to this product or feature set?
+  trigger: New product, or a feature that introduces a new data class, integration or tenant boundary
+  agent: Draft gap analysis of the proposed scope against the security baseline; list applicable regulations and certifications
+  checks: Baseline checklist completeness; every baseline item has a status
+  people: Security owner confirms objectives and gaps to close
+  evidence: Baseline and gap record
+  applies_to:
+  - All
+  maturity: Later
+  traditional:
+    activity: SDL discovery; security baselines and gap analysis; required certifications
+    owner: Sponsor; security
+    artefact: Security objectives; gap analysis
+  notes: Runs rarely. Could fold into W04 for small products.
+- id: W03
+  phase: '1'
+  name: Design-to-specification handoff
+  decision: Is the design source stable and complete enough to specify from?
+  trigger: Wireframes or prototype marked done
+  agent: 'Derive a UI capability description from the design source: screens, flows, states, responsive behavior'
+  checks: Design asset versioned and locked (gold master); all interactive states enumerated; only design-system tokens referenced
+  people: Design owner signs off the baseline
+  evidence: Handoff record
+  applies_to:
+  - UI
+  maturity: First
+  traditional:
+    activity: User research and personas; wireframes to hi-fi mockups; usability review and sign-off; asset handoff
+    owner: UX / Design
+    artefact: Wireframes; mockups; prototype; design-system components
+  notes: Gold-master governance lives here.
+- id: W04
+  phase: '1'
+  name: Specification readiness
+  decision: Is the specification ready to plan from?
+  trigger: Specification marked ready for planning
+  agent: Scan for ambiguity, missing edge cases, untestable acceptance criteria, unstated non-functional requirements; propose
+    risk tier and open questions
+  checks: Required sections present; every acceptance criterion has an identifier; mandatory questions have recorded answers
+  people: Product owner resolves intent; engineering or security owner confirms constraints
+  evidence: Readiness record
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Requirement gathering and review; SRS; use cases and user stories; success criteria and KPIs; clarifications;
+      requirement sign-off
+    owner: PM / BA
+    artefact: SRS; use cases; acceptance criteria; sign-off
+  notes: The workflow that configures the rest.
+- id: W05
+  phase: '1'
+  name: Brownfield pre-flight analysis
+  decision: What does the existing system already do here, and what must not change?
+  trigger: Specification touches existing code (not greenfield)
+  agent: Map affected components, current behavior, conventions, implicit rules and dependencies from the codebase
+  checks: Symbol and dependency navigation is deterministic (language server or equivalent); report cites file locations
+  people: Architect confirms or corrects the analysis
+  evidence: Analysis report attached to the specification
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Feasibility and constraints; impact analysis; technical spike input
+    owner: Architecture; senior developer
+    artefact: Often nothing written
+  notes: Traditional counterpart was usually informal.
+- id: W06
+  phase: '1'
+  name: Threat modeling
+  decision: Which threats apply to this change, and which mitigations are required?
+  trigger: Specification touches authentication, authorization, data classes, external integrations or trust boundaries
+  agent: Draft threat model from the specification and architecture; propose mitigations mapped to acceptance criteria
+  checks: Every trust boundary named in the plan has an entry; every mitigation traces to a criterion or a rule
+  people: Security owner validates the model and required mitigations
+  evidence: Threat model record
+  applies_to:
+  - API
+  - Data
+  maturity: Later
+  traditional:
+    activity: Threat modeling (preparation, analysis, mitigations, validation); threat model updates
+    owner: Senior engineers; project managers; security
+    artefact: Threat model
+  notes: SDL activity. Also updated at plan time.
+- id: W07
+  phase: '1'
+  name: Spike
+  decision: Which option, or is this feasible at all?
+  trigger: A bounded question with a time box
+  agent: Explore options; prototype; summarize trade-offs with evidence
+  checks: Time box enforced; output in the required decision-record format
+  people: Decision recorded with rationale; does not count as delivery throughput
+  evidence: Decision record
+  applies_to:
+  - All
+  maturity: Later
+  traditional:
+    activity: Technical spike; proof of concept; feasibility study; high-level solution options
+    owner: Architecture; development
+    artefact: Demo; verbal conclusion
+  notes: Low frequency; keep in catalog, low priority.
+- id: W08
+  phase: '2'
+  name: Plan and architecture conformance
+  decision: Is the technical approach acceptable, and which gates apply?
+  trigger: Readiness record accepted
+  agent: Draft plan from the specification; check against the constitution; identify boundaries crossed and change categories;
+    draft gate declaration
+  checks: Constitution rules routed to gates are checked; gate declaration committed with lane, categories and named reviewers
+  people: Tech lead owns the plan; architect approves exceptions
+  evidence: Plan with gate declaration
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: System and data design; system design document; architecture diagram; design review and standards; component
+      and module design
+    owner: Architecture; development
+    artefact: SDD; architecture diagram; DFD; tech-design notes
+  notes: Where the risk tier becomes the gate set.
+- id: W09
+  phase: '2'
+  name: API contract design
+  decision: Is the interface contract agreed before implementation starts?
+  trigger: Plan declares a new or changed API surface
+  agent: Draft or update the contract from the specification; flag breaking changes and undocumented surface
+  checks: Schema valid; breaking-change diff against the current version; versioning rule applied
+  people: API owner approves; consumers notified for breaking changes
+  evidence: Contract record
+  applies_to:
+  - API
+  maturity: First
+  traditional:
+    activity: Interface and API contracts; interface design for user and other systems
+    owner: Architecture
+    artefact: API specification (OpenAPI or equivalent)
+  notes: Contract-first principle.
+- id: W10
+  phase: '2'
+  name: Data model and migration plan
+  decision: Is the data change designed safely, with a way back?
+  trigger: Plan declares a data model change or migration
+  agent: Draft schema change, migration sequence and rollback; identify affected data and consumers
+  checks: Schema diff; migration and rollback scripts present; data classification recorded
+  people: Data owner approves the design
+  evidence: Data design record
+  applies_to:
+  - Data
+  maturity: First
+  traditional:
+    activity: Database design; ER diagram; tables, relationships, keys and constraints
+    owner: Architecture; DBA
+    artefact: ER diagram; data design
+  notes: Execution is W16.
+- id: W11
+  phase: '2'
+  name: Security design review
+  decision: Does the design meet the security requirements and mitigations?
+  trigger: Plan for a change with tier-3 security categories
+  agent: Review the plan against the baseline and threat model; list unmitigated threats
+  checks: Every required mitigation traces to a task or a rule
+  people: Security reviewer (tier 3) approves
+  evidence: Security design record
+  applies_to:
+  - API
+  - Data
+  maturity: Later
+  traditional:
+    activity: Security design review; security requirements; privacy impact assessment
+    owner: Development team; security expert
+    artefact: Review record
+  notes: SDL activity. Could be a gate inside W08 for lower tiers.
+- id: W12
+  phase: '2'
+  name: Task traceability and test planning
+  decision: Is the work ready to start (definition of ready)?
+  trigger: Plan accepted
+  agent: Generate tasks from the plan; map every acceptance criterion to implementation and test tasks; classify each criterion
+    under the testing contract
+  checks: No orphan criteria; no task without a criterion; test tasks precede implementation tasks; stable task identifiers
+  people: Dev lead confirms sequencing; QA lead owns the testing-contract classification
+  evidence: Tasks file with traceability
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Task breakdown; sprint planning; effort estimation; test plan and strategy; testability review; traceability
+      to requirements
+    owner: Development; QA
+    artefact: Tickets; estimates; test plan; traceability matrix
+  notes: Absorbs STLC test planning.
+- id: W13
+  phase: '3'
+  name: Task execution loop
+  decision: Is this task done to the agreed standard?
+  trigger: Task picked up
+  agent: Implement the task; run the quality command; self-correct within the retry limit; write the commit message with task
+    identifier
+  checks: Lint, type check, unit tests, sandbox and permission boundaries, command restrictions, branch protection
+  people: Developer directs and inspects; stops the loop on repeated failure
+  evidence: Commit linked to the task with check results
+  applies_to:
+  - All
+  maturity: Floor
+  traditional:
+    activity: Feature implementation; unit testing; coding standards; branch and merge; integration builds
+    owner: Development
+    artefact: Commits; unit tests
+  notes: The quality command is the floor. No agent needed to start.
+- id: W14
+  phase: '3'
+  name: Documentation generation
+  decision: Is the documentation current with the change?
+  trigger: Change touches a public surface, a runbook or an architecture decision
+  agent: Generate or update API docs from the contract, ADR drafts, runbook steps and user-facing notes
+  checks: Docs diff present when a public surface changed; links resolve; generated sections marked
+  people: Owner reviews substance, not formatting
+  evidence: Docs record
+  applies_to:
+  - All
+  maturity: Later
+  traditional:
+    activity: Tech-design notes; code documentation; user documentation; training material (docs only)
+    owner: Development; PM
+    artefact: Wiki pages; comments; manuals
+  notes: 'AGN: docs generated inline rather than afterwards.'
+- id: W15
+  phase: '3'
+  name: Dependency change
+  decision: May this library or version enter the codebase?
+  trigger: Manifest or lockfile changes
+  agent: Summarize what the dependency is for and what it replaces; note maintenance signals
+  checks: License policy; vulnerability scan; version pinning; approved-source check
+  people: Architect approves new dependencies; security owner for flagged ones
+  evidence: Dependency record
+  applies_to:
+  - All
+  maturity: Floor
+  traditional:
+    activity: Third-party software tracking and inventory; library approval; open-source licensing review
+    owner: Senior technical lead; security
+    artefact: Inventory; wiki entry
+  notes: Scanning is a floor check; approval is the workflow.
+- id: W16
+  phase: '3'
+  name: Data change execution
+  decision: Is this migration safe to run, and can it be undone?
+  trigger: Migration script committed
+  agent: Draft migration and rollback; identify affected records and downtime window
+  checks: Migration rehearsal on representative data; rollback rehearsal; row-count and integrity checks
+  people: Data owner approves the run
+  evidence: Rehearsal and rollback record
+  applies_to:
+  - Data
+  maturity: First
+  traditional:
+    activity: Migration script review; DBA review; legacy data migration
+    owner: DBA; development
+    artefact: Reviewed script; backup plan
+  notes: Pairs with W10.
+- id: W17
+  phase: '4'
+  name: Acceptance-test generation and execution
+  decision: Does the change meet its acceptance criteria?
+  trigger: Implementation tasks complete, or on every pull request for the criteria in scope
+  agent: Generate test scenarios from acceptance criteria; separate generated from pre-existing tests; propose test data
+  checks: Tests execute in CI; results stored with criterion identifiers; changed-code coverage against baseline
+  people: QA lead judges scenario adequacy and coverage gaps
+  evidence: Test results with criterion identifiers
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Test-case design; test-data setup; test execution; defect logging; regression testing; functional and integration
+      testing
+    owner: QA
+    artefact: Test cases; execution log; defect tickets; test summary
+  notes: Absorbs four STLC stages.
+- id: W18
+  phase: '4'
+  name: Security verification
+  decision: Are the access and exposure boundaries intact for this change?
+  trigger: Change carries a security category, or on every pull request for the floor checks
+  agent: Trace access paths through the change; explain threats introduced; propose remediation
+  checks: Access tests by identity; secret scanning; static analysis; dependency audit; dynamic analysis where an environment
+    exists
+  people: Security owner for tier-3 categories; otherwise the reviewer
+  evidence: Security check record
+  applies_to:
+  - All
+  maturity: Floor
+  traditional:
+    activity: Static analysis; dynamic analysis; vulnerability scanning; fuzzing; security review; secure coding checklist
+    owner: Developers; QA; security expert
+    artefact: Scan reports; review ticket
+  notes: Secret scanning and SAST are floor; access tests are first.
+- id: W19
+  phase: '4'
+  name: Performance verification
+  decision: Does the change stay within its performance budget?
+  trigger: Change carries a performance category, or touches a budgeted path
+  agent: Select scenarios relevant to the change; analyze regressions against baseline
+  checks: Budget thresholds; regression against baseline; scenario executed in a representative environment
+  people: Owner accepts or rejects a budget change
+  evidence: Performance record
+  applies_to:
+  - All
+  maturity: Later
+  traditional:
+    activity: Non-functional review; performance and load testing
+    owner: Architecture; QA
+    artefact: Load test report
+  notes: Needs a load environment; often could-not-run at first.
+- id: W20
+  phase: '4'
+  name: Accessibility and visual regression
+  decision: Is the interface still correct, accessible and consistent?
+  trigger: Change touches interface files
+  agent: Identify changed screens and states; draft what a person should look at
+  checks: Accessibility rules; visual diff; both themes; all component states; design-system tokens only
+  people: Design owner judges intent and acceptable differences
+  evidence: Interface check record
+  applies_to:
+  - UI
+  maturity: First
+  traditional:
+    activity: Design QA versus build; pixel and interaction review; accessibility checks; visual-regression review; usability
+      testing
+    owner: UX / Design; QA
+    artefact: Screenshots; a11y report
+  notes: FRP UI variant.
+- id: W21
+  phase: '4'
+  name: API contract conformance
+  decision: Does the implementation match the agreed contract?
+  trigger: Change touches an endpoint
+  agent: Diff contract and implementation; flag undocumented surface used by clients
+  checks: Contract tests; schema validation; breaking-change detection; consumer contracts where they exist
+  people: API owner approves version bumps
+  evidence: Conformance record
+  applies_to:
+  - API
+  maturity: First
+  traditional:
+    activity: Interface testing; integration testing between modules; consumer verification
+    owner: Development; QA
+    artefact: Integration test results
+  notes: FRP API variant.
+- id: W22
+  phase: '4'
+  name: System integration and acceptance evidence
+  decision: Does the integrated system behave, and does the business accept it?
+  trigger: Feature validated at pull-request level; SIT entry criteria met
+  agent: Assemble the evidence pack; draft UAT scripts from acceptance criteria; summarize open defects and dispositions
+  checks: SIT entry evidence present; environment and configuration version recorded; every criterion has a disposition
+  people: QA lead runs SIT, including manual paths that span hardware, firmware and cloud; business owner signs acceptance
+  evidence: SIT and acceptance record
+  applies_to:
+  - All
+  maturity: Later
+  traditional:
+    activity: System testing; user acceptance testing; UAT coordination; business sign-off; test summary; acceptance contract
+    owner: QA; PM; business
+    artefact: Test summary; UAT sign-off; acceptance contract
+  notes: Human-led; the agent assembles evidence. Manual SIT stays where paths cannot be reproduced in CI.
+- id: W23
+  phase: '5'
+  name: Pull-request verification
+  decision: Is this change ready to merge?
+  trigger: Pull request marked ready; revision changes
+  agent: Compare the diff with the specification; trace affected paths; draft findings with locations and reasons; summarize
+  checks: All required checks for the tier; expected checks recorded before results; enforcement status verified
+  people: Reviewer decides on design, unresolved questions and adequacy of verification
+  evidence: Verification record
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Code review; design-adherence review; peer review
+    owner: Development; architecture
+    artefact: Approval comment
+  notes: The Part 5 example. Aggregates W17-W21 results.
+- id: W24
+  phase: '5'
+  name: Design and architecture review
+  decision: Is the design acceptable given its trade-offs?
+  trigger: Tier-3 change, or an explicit architecture decision
+  agent: Summarize the decision, alternatives considered and consequences
+  checks: None that can be mechanized
+  people: Named specialist reviewer with capacity
+  evidence: Design decision record (ADR)
+  applies_to:
+  - All
+  maturity: Later
+  traditional:
+    activity: Architecture board; design review; standards governance
+    owner: Architecture
+    artefact: Meeting minutes; ADR
+  notes: Judgment-only workflow; the agent only prepares.
+- id: W25
+  phase: '6'
+  name: Release readiness
+  decision: Is this release safe to deploy?
+  trigger: Release candidate tagged
+  agent: Aggregate evidence across the changes; draft release notes and known risks; check for missing records
+  checks: All required records present and current for the candidate revision; rollback path demonstrated; configuration version
+    recorded; final license and security gap checks
+  people: Release owner approves; mandatory organizational controls (CAB, security sign-off) unchanged
+  evidence: Release record
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Go/no-go input; release-readiness review; release notes; stakeholder comms; final security gap analysis; final
+      privacy review; open-source licensing review; test closure
+    owner: PM; DevOps; QA; security
+    artefact: Release notes; approval; acceptance contract
+  notes: Absorbs STLC test closure and SDL release activities.
+- id: W26
+  phase: '6'
+  name: Deployment and post-deploy verification
+  decision: Is the deployment healthy, or do we roll back?
+  trigger: Deployment started
+  agent: Compare observed health to expected; summarize anomalies
+  checks: Health checks; smoke tests; toggles; deployment event and environment recorded; rollback rehearsed
+  people: On-call decides rollback or proceed; hypercare owner named
+  evidence: Deployment record
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Deployment plan and checklist; production environment setup; smoke and sanity; rollback plan; config and secrets;
+      deployment notice; deployment strategy (phased, rolling, pilot)
+    owner: DevOps / Platform
+    artefact: Deployment notice; runbook
+  notes: Deployment strategy is a plan input, not a workflow.
+- id: W27
+  phase: '7'
+  name: Incident remediation
+  decision: Mitigate now, roll back, or fix forward?
+  trigger: Alert or incident opened
+  agent: Triage; correlate logs, metrics and recent changes; propose remediation; draft the fix as a pull request
+  checks: Rollback available; proposed fix passes pull-request verification before deploy
+  people: On-call decides the response
+  evidence: Incident record
+  applies_to:
+  - All
+  maturity: Later
+  traditional:
+    activity: Incident response; incident verification; defect resolution; hotfix readiness; corrective maintenance
+    owner: DevOps / SRE; development; QA
+    artefact: Incident ticket; hotfix
+  notes: 'AGN: agent-assisted remediation. Never auto-deploys.'
+- id: W28
+  phase: '7'
+  name: Incident-to-development feedback
+  decision: What must change upstream so this does not recur?
+  trigger: Incident closed, or escaped defect classified
+  agent: Propose root cause; identify which check passed wrongly, was absent, or was bypassed; draft the regression case
+  checks: Proposed test reproduces the failure before the fix and passes after
+  people: Owner picks the conversion (criterion, test, validator, eval) and the workflow it lands in
+  evidence: Feedback record linked to the upstream change
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Post-mortem; root-cause analysis; defect-driven backlog; tech-debt and improvement backlog; feedback loop
+    owner: Development; QA; PM
+    artefact: RCA document; backlog items
+  notes: The loop that makes the factory real (Part 6).
+- id: W29
+  phase: '7'
+  name: Vulnerability response
+  decision: Are we exposed, and is the patch verified?
+  trigger: Advisory published, or scanner finding
+  agent: Map the advisory to affected components and versions; draft the patch change
+  checks: Dependency audit; patch verification tests; exposure window recorded
+  people: Security owner sets urgency and accepts closure
+  evidence: Response record
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Third-party software tracking and review; external vulnerability disclosure and response; security updates
+    owner: Senior technical lead; security
+    artefact: Spreadsheet; tickets
+  notes: Scanning floor exists via W15.
+- id: W30
+  phase: '7'
+  name: Usage and feedback intake
+  decision: What should change based on how the product is actually used?
+  trigger: Review cadence, or a threshold in analytics or support volume
+  agent: Summarize analytics, support tickets and UX feedback into candidate backlog items with evidence links
+  checks: None deterministic; every candidate cites its source
+  people: Product owner prioritizes; enters W01
+  evidence: Feedback digest
+  applies_to:
+  - All
+  maturity: Later
+  traditional:
+    activity: Adoption tracking; UX analytics; feedback-driven design backlog; benefits realization; perfective maintenance
+    owner: PM; UX / Design
+    artefact: Analytics dashboards; backlog
+  notes: Feeds W01. Low deterministic content.
+- id: W31
+  phase: '7'
+  name: Decommission and data disposal
+  decision: Can this component or data be retired safely and compliantly?
+  trigger: Retirement decision, or retention period expiry
+  agent: Inventory data, dependencies and consumers; list retention obligations
+  checks: Retention policy rules; dependency check for remaining consumers; key destruction verified
+  people: Data owner and compliance approve
+  evidence: Disposal record
+  applies_to:
+  - All
+  maturity: Later
+  traditional:
+    activity: Disposal; data retention and disposal; crypto-shredding
+    owner: Compliance; platform
+    artefact: Disposal record
+  notes: SDL Disposal phase. Rare but regulated.
+- id: W32
+  phase: X
+  name: Change control
+  decision: Is this change approved to proceed against the baseline?
+  trigger: Any change that alters scope, a controlled artefact or a production system under change management
+  agent: Draft the change request with impact drawn from existing evidence records
+  checks: Change log entry present; linked evidence current; scope-change document attached when scope moved
+  people: Designated approver or CAB, per the operating model
+  evidence: Change record
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Change requests; scope-change documentation; change impact and approval; change log; audit trail; regression
+      on changes
+    owner: PM / BA; architecture; DevOps
+    artefact: Change request; change log
+  notes: Evidence links now; automation later.
+- id: W33
+  phase: X
+  name: Exception handling
+  decision: May this requirement be departed from, for how long, and under what compensating control?
+  trigger: A required check fails, or a control cannot be met
+  agent: Draft the exception with scope, rationale and compensating control
+  checks: Expiry enforced; underlying failed or missing check remains visible in evidence
+  people: Designated gate owner approves; enterprise controls never waived here
+  evidence: Exception record
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Waiver; risk acceptance
+    owner: Manager; security
+    artefact: Email; risk register entry
+  notes: Operating-model rule; kit enforces visibility.
+- id: W34
+  phase: X
+  name: Kit upgrade
+  decision: Adopt this kit version in this project?
+  trigger: New kit release
+  agent: None required; optional summary of behavior changes
+  checks: init, doctor, verify; new validators in observe mode before blocking; enforcement verified
+  people: Project owner accepts the upgrade
+  evidence: Upgrade record
+  applies_to:
+  - All
+  maturity: First
+  traditional:
+    activity: Tooling or framework upgrade (ad hoc)
+    owner: Development; DevOps
+    artefact: None
+  notes: No traditional counterpart worth mapping.
+- id: W35
+  phase: X
+  name: Evaluation rerun
+  decision: Is this skill or model still acceptable after a change?
+  trigger: Skill, prompt, adapter or model version changes
+  agent: The subject under test
+  checks: Evaluation suite against golden scenarios; report by scenario, not by count
+  people: Owner reads which scenario failed and decides
+  evidence: Evaluation report
+  applies_to:
+  - All
+  maturity: Later
+  traditional:
+    activity: None
+    owner: None
+    artefact: None
+  notes: Exists only because agents do.
+traditional_map:
+- source: PRM
+  phase: P1 Requirement & planning
+  role: PM / BA
+  activity: Backlog grooming
+  artefact: Issue tracker
+  lands_in: W01
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P1 Requirement & planning
+  role: PM / BA
+  activity: Requirement gathering and review
+  artefact: Wiki
+  lands_in: W04
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P1 Requirement & planning
+  role: PM / BA
+  activity: Success criteria / KPIs
+  artefact: null
+  lands_in: W04
+  how: Workflow
+  note: Acceptance criteria with identifiers
+- source: PRM
+  phase: P1 Requirement & planning
+  role: PM / BA
+  activity: Scope and MVP definition
+  artefact: Roadmapping tool
+  lands_in: W01
+  how: Workflow
+  note: Sizing rule
+- source: PRM
+  phase: P1 Requirement & planning
+  role: UX / Design
+  activity: User research; personas; journey mapping
+  artefact: Research, design and whiteboard tools
+  lands_in: excluded
+  how: Upstream of the catalog
+  note: Product discovery, not a delivery workflow
+- source: PRM
+  phase: P1 Requirement & planning
+  role: UX / Design
+  activity: Early wireframe concepts
+  artefact: Design tool
+  lands_in: W03
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P1 Requirement & planning
+  role: Architecture
+  activity: Feasibility and constraints
+  artefact: null
+  lands_in: W05
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P1 Requirement & planning
+  role: Architecture
+  activity: High-level solution options
+  artefact: Diagramming tool
+  lands_in: W07
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P1 Requirement & planning
+  role: Development
+  activity: Effort estimation
+  artefact: Issue tracker
+  lands_in: W12
+  how: Inside workflow
+  note: Estimation after tasks exist
+- source: PRM
+  phase: P1 Requirement & planning
+  role: Development
+  activity: Technical spike input
+  artefact: null
+  lands_in: W07
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P1 Requirement & planning
+  role: QA
+  activity: Testability review
+  artefact: null
+  lands_in: W04
+  how: Inside workflow
+  note: Untestable criteria flagged at readiness
+- source: PRM
+  phase: P1 Requirement & planning
+  role: QA
+  activity: Early test strategy
+  artefact: Wiki
+  lands_in: W12
+  how: Workflow
+  note: Testing contract
+- source: PRM
+  phase: P1 Requirement & planning
+  role: DevOps / Platform
+  activity: Environment and tooling needs; capacity planning
+  artefact: null
+  lands_in: harness
+  how: Harness / operating model
+  note: Environment readiness is a kit doctor check
+- source: PRM
+  phase: P2 Design
+  role: PM / BA
+  activity: Functional spec; acceptance criteria; UX flow sign-off
+  artefact: Wiki; issue tracker
+  lands_in: W04
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P2 Design
+  role: UX / Design
+  activity: Wireframes to hi-fi mockups; prototypes; usability review and sign-off
+  artefact: Design and prototyping tools
+  lands_in: W03
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P2 Design
+  role: UX / Design
+  activity: Design system / components
+  artefact: Component workbench
+  lands_in: harness
+  how: Harness
+  note: Design system is knowledge in the kit
+- source: PRM
+  phase: P2 Design
+  role: Architecture
+  activity: System and data design
+  artefact: Diagramming tool
+  lands_in: W08
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P2 Design
+  role: Architecture
+  activity: Interface / API contracts
+  artefact: OpenAPI
+  lands_in: W09
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P2 Design
+  role: Architecture
+  activity: Design review and standards
+  artefact: null
+  lands_in: W08 / W24
+  how: Workflow
+  note: Conformance is W08; judgment review is W24
+- source: PRM
+  phase: P2 Design
+  role: Development
+  activity: Component / module design; tech-design notes
+  artefact: Wiki
+  lands_in: W08 / W14
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P2 Design
+  role: QA
+  activity: Test plan and case design
+  artefact: Test management
+  lands_in: W12 / W17
+  how: Workflow
+  note: Plan in W12; cases in W17
+- source: PRM
+  phase: P2 Design
+  role: QA
+  activity: Traceability to requirements
+  artefact: Test management
+  lands_in: W12
+  how: Workflow
+  note: Deterministic orphan check
+- source: PRM
+  phase: P2 Design
+  role: DevOps / Platform
+  activity: Infra / pipeline design; environment provisioning plan
+  artefact: Infrastructure as code
+  lands_in: harness
+  how: Harness
+  note: Kit adapters and CI
+- source: PRM
+  phase: P3 Development
+  role: PM / BA
+  activity: Clarifications; backlog refinement; demo feedback
+  artefact: Issue tracker
+  lands_in: W04 / W30
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P3 Development
+  role: UX / Design
+  activity: Design QA vs build; asset handoff; pixel / interaction review
+  artefact: Design and handoff tools
+  lands_in: W20 / W03
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P3 Development
+  role: Architecture
+  activity: Design-adherence reviews; integration patterns
+  artefact: null
+  lands_in: W23 / W08
+  how: Workflow
+  note: Adherence becomes deterministic gates where possible
+- source: PRM
+  phase: P3 Development
+  role: Development
+  activity: Feature implementation
+  artefact: AI coding assistant
+  lands_in: W13
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P3 Development
+  role: Development
+  activity: Unit tests
+  artefact: Unit-test framework
+  lands_in: W13
+  how: Inside workflow
+  note: Quality command
+- source: PRM
+  phase: P3 Development
+  role: Development
+  activity: Code reviews
+  artefact: Code host
+  lands_in: W23
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P3 Development
+  role: Development
+  activity: Branch / merge
+  artefact: Git
+  lands_in: W13
+  how: Inside workflow
+  note: Branch protection is a floor control
+- source: PRM
+  phase: P3 Development
+  role: QA
+  activity: Test-case prep; test-data setup; early defect logging
+  artefact: Test management; issue tracker
+  lands_in: W17
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P3 Development
+  role: DevOps / Platform
+  activity: CI build setup; static analysis; artifact management
+  artefact: CI server; static analysis; artifact repository
+  lands_in: harness
+  how: Harness
+  note: CI adapter; static analysis is a floor validator
+- source: PRM
+  phase: P4 Testing & QA
+  role: PM / BA
+  activity: UAT coordination; business sign-off
+  artefact: null
+  lands_in: W22
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P4 Testing & QA
+  role: UX / Design
+  activity: Usability testing; accessibility checks; visual-regression review
+  artefact: Usability, accessibility and visual-diff tools
+  lands_in: W20
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P4 Testing & QA
+  role: Architecture
+  activity: Non-functional review; perf / security review
+  artefact: Dynamic security scanner
+  lands_in: W19 / W18
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P4 Testing & QA
+  role: Development
+  activity: Bug fixing; regression support
+  artefact: Issue tracker
+  lands_in: W13
+  how: Workflow
+  note: Bug lane re-enters W01 then W13
+- source: PRM
+  phase: P4 Testing & QA
+  role: QA
+  activity: Functional / system / integration testing
+  artefact: UI test automation
+  lands_in: W17 / W22
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P4 Testing & QA
+  role: QA
+  activity: Regression testing
+  artefact: Test framework
+  lands_in: W17
+  how: Inside workflow
+  note: Regression suite runs in CI
+- source: PRM
+  phase: P4 Testing & QA
+  role: QA
+  activity: Defect tracking; test summary
+  artefact: Issue tracker; test management
+  lands_in: W17 / W22
+  how: Evidence
+  note: Defects become evidence and W28 inputs
+- source: PRM
+  phase: P4 Testing & QA
+  role: DevOps / Platform
+  activity: Test-environment management; automated test runs in CI
+  artefact: Containers; CI server
+  lands_in: harness
+  how: Harness
+  note: null
+- source: PRM
+  phase: P5 Release / Deployment
+  role: PM / BA
+  activity: Release notes; stakeholder comms; go/no-go input
+  artefact: Wiki
+  lands_in: W25
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P5 Release / Deployment
+  role: UX / Design
+  activity: Final UI sign-off; release visual check
+  artefact: Visual-diff tool
+  lands_in: W20 / W25
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P5 Release / Deployment
+  role: Architecture
+  activity: Release-readiness review
+  artefact: null
+  lands_in: W25
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P5 Release / Deployment
+  role: Development
+  activity: Deployment support; hotfix readiness
+  artefact: Git
+  lands_in: W26 / W27
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P5 Release / Deployment
+  role: QA
+  activity: Smoke / sanity; release validation; acceptance contract
+  artefact: API test client
+  lands_in: W26 / W22
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P5 Release / Deployment
+  role: DevOps / Platform
+  activity: Deployment; rollback plan; release pipeline; config / secrets
+  artefact: CI/CD pipeline; secrets store
+  lands_in: W26
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P6 Post-deploy / Operations
+  role: PM / BA
+  activity: Adoption tracking; feedback loop; benefits realization
+  artefact: Product analytics
+  lands_in: W30
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P6 Post-deploy / Operations
+  role: UX / Design
+  activity: UX analytics; feedback-driven design backlog; iteration
+  artefact: UX analytics; issue tracker; design tool
+  lands_in: W30
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P6 Post-deploy / Operations
+  role: Architecture
+  activity: Tech-debt and improvement backlog
+  artefact: Issue tracker
+  lands_in: W28
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P6 Post-deploy / Operations
+  role: Development
+  activity: Defect resolution; maintenance
+  artefact: Issue tracker
+  lands_in: W27 / W01
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P6 Post-deploy / Operations
+  role: QA
+  activity: Prod quality monitoring; incident verification
+  artefact: Error monitoring
+  lands_in: W27
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P6 Post-deploy / Operations
+  role: DevOps / Platform
+  activity: Monitoring / alerting; incident response; SRE / uptime
+  artefact: Monitoring, alerting and on-call tools
+  lands_in: W27 / harness
+  how: Workflow + harness
+  note: Observability setup is harness; response is W27
+- source: PRM
+  phase: P6 Post-deploy / Operations
+  role: DevOps / Platform
+  activity: Cost / FinOps
+  artefact: Cloud cost tool
+  lands_in: operating model
+  how: System-level measure
+  note: Cost per change includes agent and eval cost
+- source: PRM
+  phase: P7 Governance & change control
+  role: PM / BA
+  activity: Change requests; scope-change documentation
+  artefact: Change-management system; wiki
+  lands_in: W32
+  how: Workflow
+  note: null
+- source: PRM
+  phase: P7 Governance & change control
+  role: UX / Design
+  activity: Design-asset versioning; gold-master governance; design-change review
+  artefact: Design tool
+  lands_in: W03
+  how: Inside workflow
+  note: Locked masters are a check at handoff
+- source: PRM
+  phase: P7 Governance & change control
+  role: Architecture
+  activity: Change impact and approval; standards governance
+  artefact: null
+  lands_in: W32 / registry
+  how: Workflow + kit
+  note: Standards live in the rule registry
+- source: PRM
+  phase: P7 Governance & change control
+  role: Development
+  activity: Change implementation per control process
+  artefact: Git
+  lands_in: W13
+  how: Inside workflow
+  note: null
+- source: PRM
+  phase: P7 Governance & change control
+  role: QA
+  activity: Regression on changes; change verification
+  artefact: CI server
+  lands_in: W17
+  how: Inside workflow
+  note: null
+- source: PRM
+  phase: P7 Governance & change control
+  role: DevOps / Platform
+  activity: Change log; audit trail; compliance / security gates
+  artefact: Log platform; static analysis
+  lands_in: W32 / evidence
+  how: Evidence schema
+  note: Audit trail is the evidence record itself
+- source: SDL
+  phase: Concept
+  role: Sponsor
+  activity: SDL discovery and preparation
+  artefact: null
+  lands_in: W02
+  how: Workflow
+  note: null
+- source: SDL
+  phase: Concept
+  role: Everyone
+  activity: Security training and awareness
+  artefact: null
+  lands_in: excluded
+  how: Not a workflow
+  note: People capability; operating model
+- source: SDL
+  phase: Planning
+  role: Senior engineers; PMs
+  activity: Threat modeling
+  artefact: null
+  lands_in: W06
+  how: Workflow
+  note: null
+- source: SDL
+  phase: Planning
+  role: Senior engineers; PMs
+  activity: Security requirements; gap analysis; privacy impact assessment
+  artefact: null
+  lands_in: W02 / W04
+  how: Workflow
+  note: Requirements enter the spec as criteria
+- source: SDL
+  phase: Planning
+  role: Senior technical lead
+  activity: Third-party software tracking
+  artefact: null
+  lands_in: W15 / W29
+  how: Workflow
+  note: null
+- source: SDL
+  phase: Design & development
+  role: Dev team; security
+  activity: Threat modeling updates
+  artefact: null
+  lands_in: W06
+  how: Workflow
+  note: Re-run at plan
+- source: SDL
+  phase: Design & development
+  role: Dev team; security
+  activity: Security design review
+  artefact: null
+  lands_in: W11
+  how: Workflow
+  note: null
+- source: SDL
+  phase: Design & development
+  role: Dev team
+  activity: Code review (secure coding checklist)
+  artefact: null
+  lands_in: W23 / W18
+  how: Workflow
+  note: Checklist items become validators where possible
+- source: SDL
+  phase: Design & development
+  role: Developers; QA; security
+  activity: Static analysis; vulnerability scanning
+  artefact: null
+  lands_in: W18
+  how: Inside workflow
+  note: Floor validators
+- source: SDL
+  phase: Testing
+  role: Developers; QA; security
+  activity: Dynamic analysis; security review
+  artefact: null
+  lands_in: W18
+  how: Workflow
+  note: null
+- source: SDL
+  phase: Testing
+  role: Developers; QA; security
+  activity: Fuzzing
+  artefact: null
+  lands_in: W18
+  how: Inside workflow
+  note: Later; needs harness support
+- source: SDL
+  phase: Testing
+  role: Third-party certified tester
+  activity: Third-party penetration testing
+  artefact: null
+  lands_in: W25
+  how: External input
+  note: Evidence consumed at release readiness; never automated
+- source: SDL
+  phase: Release
+  role: null
+  activity: Final gap analysis; final security tests review
+  artefact: null
+  lands_in: W25
+  how: Inside workflow
+  note: null
+- source: SDL
+  phase: Release
+  role: null
+  activity: Final privacy review; open-source licensing review
+  artefact: null
+  lands_in: W25 / W15
+  how: Inside workflow
+  note: null
+- source: SDL
+  phase: Sustain
+  role: Senior technical lead
+  activity: Third-party software tracking and review
+  artefact: null
+  lands_in: W29
+  how: Workflow
+  note: null
+- source: SDL
+  phase: Sustain
+  role: null
+  activity: External vulnerability disclosure and response
+  artefact: null
+  lands_in: W29
+  how: Workflow
+  note: null
+- source: SDL
+  phase: Disposal
+  role: null
+  activity: Data disposal and retention; crypto-shredding
+  artefact: null
+  lands_in: W31
+  how: Workflow
+  note: null
+- source: STLC
+  phase: '1'
+  role: QA
+  activity: Requirement analysis (testability)
+  artefact: null
+  lands_in: W04
+  how: Inside workflow
+  note: null
+- source: STLC
+  phase: '2'
+  role: QA
+  activity: Test planning
+  artefact: null
+  lands_in: W12
+  how: Workflow
+  note: Testing contract
+- source: STLC
+  phase: '3'
+  role: QA
+  activity: Test case design
+  artefact: null
+  lands_in: W17
+  how: Workflow
+  note: Generated from criteria
+- source: STLC
+  phase: '4'
+  role: QA / DevOps
+  activity: Test environment setup
+  artefact: null
+  lands_in: harness
+  how: Harness
+  note: Could-not-run is the visible failure when missing
+- source: STLC
+  phase: '5'
+  role: QA
+  activity: Test execution
+  artefact: null
+  lands_in: W17
+  how: Workflow
+  note: null
+- source: STLC
+  phase: '6'
+  role: QA
+  activity: Defect reporting
+  artefact: null
+  lands_in: evidence
+  how: Evidence + failure paths
+  note: null
+- source: STLC
+  phase: '7'
+  role: QA
+  activity: Test closure
+  artefact: null
+  lands_in: W25
+  how: Inside workflow
+  note: null
+- source: AGN
+  phase: Agentic 1
+  role: Human
+  activity: Express intent
+  artefact: null
+  lands_in: W04
+  how: Workflow
+  note: null
+- source: AGN
+  phase: Agentic 2
+  role: Agent
+  activity: Agent understands
+  artefact: null
+  lands_in: W04 / W05
+  how: Workflow
+  note: Readiness and pre-flight; not seconds
+- source: AGN
+  phase: Agentic 3
+  role: Agent
+  activity: Agent implements
+  artefact: null
+  lands_in: W13
+  how: Workflow
+  note: null
+- source: AGN
+  phase: Agentic 4
+  role: Agent
+  activity: Agent tests and docs
+  artefact: null
+  lands_in: W17 / W14
+  how: Workflow
+  note: null
+- source: AGN
+  phase: Agentic 5
+  role: Human
+  activity: Human review
+  artefact: null
+  lands_in: W23
+  how: Workflow
+  note: Plus W18-W22 gates the infographic hides
+- source: AGN
+  phase: Agentic 6
+  role: null
+  activity: Deploy and ship
+  artefact: null
+  lands_in: W25 / W26
+  how: Workflow
+  note: null
+- source: AGN
+  phase: Agentic 7
+  role: null
+  activity: Monitoring and observability
+  artefact: null
+  lands_in: W27 / harness
+  how: Workflow + harness
+  note: null
+- source: AGN
+  phase: Agentic 8
+  role: null
+  activity: Learn and iterate
+  artefact: null
+  lands_in: W28 / W30
+  how: Workflow
+  note: null
+- source: AGN
+  phase: Key difference
+  role: null
+  activity: Docs generated inline
+  artefact: null
+  lands_in: W14
+  how: Workflow
+  note: null
+- source: AGN
+  phase: Key difference
+  role: null
+  activity: Agent-assisted remediation
+  artefact: null
+  lands_in: W27
+  how: Workflow
+  note: null
+- source: AGN
+  phase: Loops
+  role: null
+  activity: Auto fix; quick refine
+  artefact: null
+  lands_in: W13 / W23
+  how: Retry boundaries
+  note: Bounded in the workflow definition
+- source: SIX
+  phase: 1 Requirement analysis
+  role: null
+  activity: Identify stakeholders; collect functional and non-functional requirements; SRS; sign-off
+  artefact: SRS; use cases; sign-off
+  lands_in: W04
+  how: Workflow
+  note: null
+- source: SIX
+  phase: 2 System design
+  role: null
+  activity: Architecture; modules; database; UI/UX; APIs and data flow; SDD
+  artefact: SDD; architecture diagram; ER; wireframes; API spec; DFD
+  lands_in: W08 / W09 / W10 / W03
+  how: Workflow
+  note: null
+- source: SIX
+  phase: 3 Implementation
+  role: null
+  activity: Dev environment setup; write code; standards; unit testing; integrate and build; code review; fix defects
+  artefact: Commits; builds
+  lands_in: W13 / W23 / harness
+  how: Workflow + harness
+  note: null
+- source: SIX
+  phase: 3 Implementation
+  role: null
+  activity: Integration, system, smoke, regression testing during implementation
+  artefact: null
+  lands_in: W17 / W22 / W26
+  how: Workflow
+  note: null
+- source: SIX
+  phase: 4 Testing
+  role: null
+  activity: Test plan and cases; environment; execute; log defects; verify fixes; UAT; test report
+  artefact: Test report
+  lands_in: W12 / W17 / W22
+  how: Workflow
+  note: null
+- source: SIX
+  phase: 4 Testing
+  role: null
+  activity: Compatibility testing; security testing; non-functional testing
+  artefact: null
+  lands_in: W20 / W18 / W19
+  how: Workflow
+  note: null
+- source: SIX
+  phase: 5 Deployment
+  role: null
+  activity: Deployment plan; production setup; install and configure; data migration; final checks; user training; release
+  artefact: null
+  lands_in: W26 / W16 / W25
+  how: Workflow
+  note: User training excluded
+- source: SIX
+  phase: 5 Deployment
+  role: null
+  activity: Deployment strategies (big bang, phased, parallel, pilot, rolling)
+  artefact: null
+  lands_in: W26
+  how: Plan input
+  note: Strategy is chosen in the plan, executed in W26
+- source: SIX
+  phase: 6 Maintenance
+  role: null
+  activity: Monitor; fix defects; adapt; improve; security updates; support
+  artefact: null
+  lands_in: W27 / W28 / W29 / W30
+  how: Workflow
+  note: null
+- source: SIX
+  phase: 6 Maintenance
+  role: null
+  activity: Corrective, adaptive, perfective, preventive maintenance
+  artefact: null
+  lands_in: W27 / W01 / W30 / W28
+  how: Lane mapping
+  note: Each type enters a different workflow
+- source: SEV
+  phase: 1 Formation
+  role: null
+  activity: Project initiation; ROM; project development estimate
+  artefact: null
+  lands_in: W01
+  how: Workflow
+  note: null
+- source: SEV
+  phase: 2 Requirement / planning
+  role: null
+  activity: Project management plan; functional and technical requirements; review and approval; change scope document
+  artefact: null
+  lands_in: W04 / W32
+  how: Workflow
+  note: null
+- source: SEV
+  phase: 3 Design
+  role: null
+  activity: Internal / external design; design review; detailed project development
+  artefact: null
+  lands_in: W08 / W24
+  how: Workflow
+  note: null
+- source: SEV
+  phase: 4 Develop
+  role: null
+  activity: Model; code review
+  artefact: null
+  lands_in: W13 / W23
+  how: Workflow
+  note: null
+- source: SEV
+  phase: 5 Test
+  role: null
+  activity: System test; test summary
+  artefact: null
+  lands_in: W22
+  how: Workflow
+  note: null
+- source: SEV
+  phase: 6 Product release
+  role: null
+  activity: Operational acceptance; acceptance contract
+  artefact: null
+  lands_in: W25 / W22
+  how: Workflow
+  note: null
+- source: SEV
+  phase: 7 Post deployment
+  role: null
+  activity: Maintenance; project deployment notice
+  artefact: null
+  lands_in: W26 / W27
+  how: Workflow
+  note: null
+- source: SEV
+  phase: Cross-cutting
+  role: null
+  activity: Training
+  artefact: null
+  lands_in: excluded
+  how: Not a workflow
+  note: null
+- source: SEV
+  phase: Cross-cutting
+  role: null
+  activity: Documentation
+  artefact: null
+  lands_in: W14
+  how: Workflow
+  note: null
+- source: SEV
+  phase: Cross-cutting
+  role: null
+  activity: Change control process; change control log
+  artefact: null
+  lands_in: W32
+  how: Workflow
+  note: null
+- source: FRP
+  phase: Handoff gate
+  role: UX
+  activity: UX design (design briefs, wireframes)
+  artefact: null
+  lands_in: W03
+  how: Workflow
+  note: null
+- source: FRP
+  phase: Gate 1 Spec
+  role: BA; architect
+  activity: Specify and clarify (spec, acceptance criteria); checklist; product sign-off
+  artefact: null
+  lands_in: W04
+  how: Workflow
+  note: null
+- source: FRP
+  phase: Gate 2 Design
+  role: Architect
+  activity: Plan and tasks (constitution, component specs, high-level design)
+  artefact: null
+  lands_in: W08 / W12
+  how: Workflow
+  note: null
+- source: FRP
+  phase: Gate 3 Code
+  role: Developer
+  activity: Implement; pull-request review
+  artefact: null
+  lands_in: W13 / W23
+  how: Workflow
+  note: null
+- source: FRP
+  phase: Gate 4 Functional
+  role: QA
+  activity: Functional testing (UI flows, edge states, responsive)
+  artefact: null
+  lands_in: W17 / W20
+  how: Workflow
+  note: null
+- source: FRP
+  phase: Gate 5 Security
+  role: Security
+  activity: Security testing (XSS, CSRF, auth flows)
+  artefact: null
+  lands_in: W18
+  how: Workflow
+  note: null
+- source: FRP
+  phase: Gate 6 Performance
+  role: null
+  activity: Performance testing (FCP, LCP, bundle size)
+  artefact: null
+  lands_in: W19
+  how: Workflow
+  note: null
+- source: FRP
+  phase: Release gate
+  role: null
+  activity: Release (go/no-go, deploy)
+  artefact: null
+  lands_in: W25 / W26
+  how: Workflow
+  note: null
+- source: FRP
+  phase: Variants
+  role: null
+  activity: UI feature; backend / API; data / storage
+  artefact: null
+  lands_in: Applies-to column
+  how: Variant paths
+  note: Each variant selects a subset of workflows

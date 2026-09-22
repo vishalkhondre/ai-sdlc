@@ -1,0 +1,36 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<style>
+.t{font-size:32px;font-weight:600;fill:#1f1f1c}
+.h{font-size:18px;font-weight:600;fill:#04342C}.q{font-size:14px;fill:#0F6E56}
+.m{font-size:22px;font-weight:600;fill:#26215C}.ms{font-size:14px;fill:#534AB7}
+.lab{font-size:15px;fill:#5F5E5A}.cap{font-size:20px;fill:#5F5E5A}
+</style>
+<rect width="1200" height="628" fill="#fff"/>
+<text class="t" x="78" y="80">An agent is a model plus its surroundings</text>
+<rect x="78" y="118" width="1044" height="420" rx="18" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-dasharray="7 5"/>
+<text class="lab" x="100" y="144">The harness: everything the team controls</text>
+<line x1="420" y1="230" x2="500" y2="300" stroke="#b4b2a9" stroke-width="1.5"/>
+<line x1="780" y1="230" x2="700" y2="300" stroke="#b4b2a9" stroke-width="1.5"/>
+<line x1="420" y1="335" x2="500" y2="335" stroke="#b4b2a9" stroke-width="1.5"/>
+<line x1="780" y1="335" x2="700" y2="335" stroke="#b4b2a9" stroke-width="1.5"/>
+<line x1="600" y1="375" x2="600" y2="430" stroke="#b4b2a9" stroke-width="1.5"/>
+<rect x="120" y="160" width="300" height="80" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="h" x="270" y="190" text-anchor="middle">Context it reads</text>
+<text class="q" x="270" y="216" text-anchor="middle">Where is the architecture documented?</text>
+<rect x="780" y="160" width="300" height="80" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="h" x="930" y="190" text-anchor="middle">Tools it can call</text>
+<text class="q" x="930" y="216" text-anchor="middle">Which tests should run, and can it run them?</text>
+<rect x="120" y="295" width="300" height="80" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="h" x="270" y="325" text-anchor="middle">Permissions</text>
+<text class="q" x="270" y="351" text-anchor="middle">What may it change, run, or hold?</text>
+<rect x="780" y="295" width="300" height="80" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="h" x="930" y="325" text-anchor="middle">Gates</text>
+<text class="q" x="930" y="351" text-anchor="middle">What stops a skipped or failed check?</text>
+<rect x="400" y="430" width="400" height="80" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text class="h" x="600" y="460" text-anchor="middle">Evidence and feedback</text>
+<text class="q" x="600" y="486" text-anchor="middle">What did it actually do, and what changes next time?</text>
+<rect x="500" y="295" width="200" height="80" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+<text class="m" x="600" y="328" text-anchor="middle">Model</text>
+<text class="ms" x="600" y="354" text-anchor="middle">the part you rent</text>
+<text class="cap" x="600" y="588" text-anchor="middle">Same model, different surroundings, different result.</text>
+</svg>
