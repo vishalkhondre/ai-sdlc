@@ -77,7 +77,14 @@
   /* ---------- code copy buttons ---------- */
   $$('.prose pre').forEach(pre => {
     const b = document.createElement('button'); b.className = 'copybtn'; b.type = 'button'; b.textContent = 'Copy';
-    b.addEventListener('click', () => { navigator.clipboard && navigator.clipboard.writeText(pre.innerText).then(() => toast('Copied')); });
+    b.addEventListener('click', async () => {
+      const code = $('code', pre);
+      if (!code || !navigator.clipboard) { toast('Copy unavailable'); return; }
+      try {
+        await navigator.clipboard.writeText(code.textContent);
+        toast('Copied');
+      } catch (e) { toast('Copy failed'); }
+    });
     pre.appendChild(b);
   });
   $$('[data-copy]').forEach(b => b.addEventListener('click', () => {
@@ -92,7 +99,13 @@
   const lb = $('#lightbox'), lbBody = lb && $('.lightbox-body', lb);
   function openLightbox(svg) {
     if (!lb) return;
-    lbBody.innerHTML = ''; lbBody.appendChild(svg.cloneNode(true)); lb.hidden = false; document.body.style.overflow = 'hidden';
+    // A separate image document isolates IDs from the original inline diagram.
+    const image = document.createElement('img');
+    const figure = svg.closest('.diagram');
+    image.src = base + 'diagrams/' + encodeURIComponent(figure.dataset.diagram) + '.svg';
+    const caption = $('figcaption', figure);
+    image.alt = caption ? caption.textContent.trim() : 'Diagram';
+    lbBody.replaceChildren(image); lb.hidden = false; document.body.style.overflow = 'hidden';
   }
   function closeLightbox() { if (lb) { lb.hidden = true; document.body.style.overflow = ''; } }
   $$('.diagram .zoom').forEach(b => b.addEventListener('click', e => { e.preventDefault(); openLightbox($('svg', b.parentElement)); }));

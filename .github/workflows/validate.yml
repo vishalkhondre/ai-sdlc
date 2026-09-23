@@ -15,6 +15,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -26,12 +28,23 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Citation and terminology gate
         run: python scripts/check_citations.py
+      - name: Edition and editorial acceptance gate
+        env:
+          BOOK_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          ARGS=()
+          if [[ -n "$BOOK_BASE" && ! "$BOOK_BASE" =~ ^0+$ ]]; then
+            ARGS+=(--base "$BOOK_BASE")
+          fi
+          python scripts/release_content.py check "${ARGS[@]}"
       - name: Build site
         run: python site/generate.py
       - name: Render diagram PNGs and reference-sheet PDF
         run: python scripts/render_diagrams.py
       - name: Site tests
         run: python -m unittest discover -s scripts/tests -v
+      - name: Browser interaction regression checks
+        run: python scripts/check_browser.py
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:

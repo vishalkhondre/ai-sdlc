@@ -4,8 +4,11 @@ import re
 import subprocess
 import sys
 import unittest
+from collections import Counter
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
+import html5lib
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -25,16 +28,43 @@ class Generated(unittest.TestCase):
 
     def test_internal_links_resolve(self):
         pages = list(SITE.glob("*.html"))
-        names = {p.name for p in pages}
+        ids_by_page = {p.name: set(re.findall(r'id="([^"]+)"', p.read_text(encoding="utf-8"))) for p in pages}
+        catalog = yaml.safe_load((CONTENT / "workflows/catalog.yml").read_text(encoding="utf-8"))
+        ids_by_page["workflow-catalog.html"].update(w["id"] for w in catalog["workflows"])
         for p in pages:
-            html = p.read_text(encoding="utf-8")
-            for href in re.findall(r'href="([^"#:]+\.html)', html):
-                self.assertIn(Path(href).name, names, f"{p.name} -> {href}")
-            ids = set(re.findall(r'id="([^"]+)"', html))
-            for frag in re.findall(r'href="#([^"]+)"', html):
-                if frag.startswith("fn") or frag.startswith("W") or frag in ("notes",):
+            for href in re.findall(r'href="([^"]+)"', p.read_text(encoding="utf-8")):
+                url = urlsplit(href)
+                if url.scheme or url.netloc or (url.path and not url.path.endswith(".html")):
                     continue
-                self.assertIn(frag, ids, f"{p.name} -> #{frag}")
+                target = Path(url.path).name if url.path else p.name
+                self.assertIn(target, ids_by_page, f"{p.name} -> {href}")
+                if url.fragment:
+                    self.assertIn(unquote(url.fragment), ids_by_page[target], f"{p.name} -> {href}")
+
+    def test_home_cards_survive_html5_parsing(self):
+        parser = html5lib.HTMLParser(namespaceHTMLElements=False)
+        doc = parser.parse((SITE / "index.html").read_text(encoding="utf-8"))
+        cards = [el for el in doc.iter() if "chapter-card" in el.get("class", "").split()]
+        self.assertEqual(len(cards), len(self.toc["chapters"]))
+        for card, chapter in zip(cards, self.toc["chapters"]):
+            self.assertEqual(card.tag, "article")
+            link = card.find("h3/a")
+            self.assertIsNotNone(link)
+            self.assertEqual(link.get("href"), chapter["slug"] + ".html")
+        self.assertFalse([error for error in parser.errors if error[1] == "unexpected-start-tag-implies-end-tag"
+                          and error[2].get("startName") == "a"])
+
+    def test_diagram_ids_and_references_are_unique(self):
+        for page in SITE.glob("*.html"):
+            source = page.read_text(encoding="utf-8")
+            counts = Counter(re.findall(r'\bid="([^"]+)"', source))
+            self.assertFalse({key: n for key, n in counts.items() if n > 1}, page.name)
+            for svg in re.findall(r"<svg\b.*?</svg>", source, re.S):
+                local_ids = set(re.findall(r'\bid="([^"]+)"', svg))
+                for target in re.findall(r'url\(#([^)]+)\)', svg):
+                    self.assertIn(target, local_ids, f"{page.name}: SVG reference {target}")
+                for target in re.findall(r'aria-labelledby="([^"]+)"', svg):
+                    self.assertIn(target, counts, f"{page.name}: SVG caption {target}")
 
     def test_diagrams_referenced_exist(self):
         for p in SITE.glob("*.html"):

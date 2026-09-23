@@ -44,9 +44,11 @@ def main() -> int:
         text = (CONTENT / "chapters" / ch["file"]).read_text(encoding="utf-8")
         used = set(re.findall(r"\[\^([a-z0-9\-]+)\](?!:)", text))
         defined = set(re.findall(r"^\[\^([a-z0-9\-]+)\]:", text, flags=re.M))
+        for key in sorted(defined & refs.keys()):
+            problems.append(f"{ch['id']}: canonical reference [^{key}] cannot be redefined locally; use a distinct note key")
         cited = set()
         for key in used:
-            if key in refs:
+            if key in refs and key not in defined:
                 cited.add(key)
             elif key in defined:
                 # an inline note: it must still link to at least one canonical reference URL

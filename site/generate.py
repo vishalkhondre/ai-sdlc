@@ -63,7 +63,7 @@ def write(p: Path, s: str) -> None:
 
 
 # --------------------------------------------------------------------------- diagrams
-def svg_source(diagram_id: str) -> tuple[str, int, int]:
+def svg_source(diagram_id: str, instance: str) -> tuple[str, int, int]:
     """Return (svg markup, width, height) for a diagram id."""
     p = DIAGRAMS_SVG / f"{diagram_id}.svg"
     if p.exists():
@@ -74,12 +74,15 @@ def svg_source(diagram_id: str) -> tuple[str, int, int]:
         raise SystemExit(f"Unknown diagram: {diagram_id}")
     m = re.search(r'<svg[^>]*width="(\d+)"[^>]*height="(\d+)"', svg)
     w, h = (int(m.group(1)), int(m.group(2))) if m else (1200, 628)
-    # make ids unique per diagram so several inline SVGs on one page do not collide
-    svg = re.sub(r'id="([a-z])"', lambda mm: f'id="{diagram_id}-{mm.group(1)}"', svg)
-    svg = re.sub(r'url\(#([a-z])\)', lambda mm: f'url(#{diagram_id}-{mm.group(1)})', svg)
+    # Namespace definitions per occurrence, including repeats and Part 7 markers.
+    id_map = {old: f"{instance}-{old}" for old in re.findall(r'\bid="([^"]+)"', svg)}
+    svg = re.sub(r'\bid="([^"]+)"', lambda m: f'id="{id_map[m.group(1)]}"', svg)
+    svg = re.sub(r'url\(#([^)]+)\)', lambda m: f'url(#{id_map.get(m.group(1), m.group(1))})', svg)
+    svg = re.sub(r'((?:xlink:)?href=")#([^"]+)(")',
+                 lambda m: m.group(1) + '#' + id_map.get(m.group(2), m.group(2)) + m.group(3), svg)
     # scope the style rules to this svg only
-    svg = re.sub(r"<style>(.*?)</style>", lambda mm: "<style>" + scope_css(mm.group(1), diagram_id) + "</style>", svg, flags=re.S)
-    svg = svg.replace("<svg ", f'<svg id="svg-{diagram_id}" role="img" aria-labelledby="cap-{diagram_id}" ', 1)
+    svg = re.sub(r"<style>(.*?)</style>", lambda mm: "<style>" + scope_css(mm.group(1), instance) + "</style>", svg, flags=re.S)
+    svg = svg.replace("<svg ", f'<svg id="svg-{instance}" role="img" aria-labelledby="cap-{instance}" ', 1)
     return svg, w, h
 
 
@@ -137,12 +140,15 @@ def write_diagram_files() -> list[str]:
 
 
 def figure(diagram_id: str, caption: str, number: int | None = None, cls: str = "") -> str:
-    svg, w, h = svg_source(diagram_id)
+    count = _FIGURE_COUNTS.get(diagram_id, 0) + 1
+    _FIGURE_COUNTS[diagram_id] = count
+    instance = f"{diagram_id}-{count}"
+    svg, w, h = svg_source(diagram_id, instance)
     label = f"Figure {number}. " if number else ""
     return (
         f'<figure class="diagram {cls}" data-diagram="{diagram_id}" style="--ar:{w}/{h}">'
         f'<div class="diagram-frame"><button class="zoom" type="button" aria-label="Open diagram full size" data-zoom="{diagram_id}">⤢</button>{svg}</div>'
-        f'<figcaption id="cap-{diagram_id}"><span class="fig-label">{label}</span>{esc(caption)}'
+        f'<figcaption id="cap-{instance}"><span class="fig-label">{label}</span>{esc(caption)}'
         f' <span class="fig-links"><a href="{rel("diagrams/" + diagram_id + ".svg")}" download>SVG</a> · <a href="{rel("diagrams/" + diagram_id + ".png")}" download>PNG</a></span></figcaption>'
         f"</figure>"
     )
@@ -150,11 +156,13 @@ def figure(diagram_id: str, caption: str, number: int | None = None, cls: str = 
 
 # --------------------------------------------------------------------------- paths
 _PREFIX = ""
+_FIGURE_COUNTS: dict[str, int] = {}
 
 
 def set_prefix(p: str) -> None:
     global _PREFIX
     _PREFIX = p
+    _FIGURE_COUNTS.clear()
 
 
 def rel(path: str) -> str:
@@ -197,6 +205,9 @@ def preprocess_markdown(md: str, chapter_id: str) -> tuple[str, list[str], list[
     md = re.sub(r"!\[([^\]]*)\]\(diagram:([a-z0-9\-]+)\)", fig_sub, md)
     used = sorted(set(re.findall(r"\[\^([a-z0-9\-]+)\](?!:)", md)))
     defined = set(re.findall(r"^\[\^([a-z0-9\-]+)\]:", md, flags=re.M))
+    overrides = defined & REFERENCES.keys()
+    if overrides:
+        raise SystemExit(f"{chapter_id}: canonical reference keys cannot be redefined locally: {', '.join(sorted(overrides))}")
     extra = []
     for key in used:
         if key in defined:
@@ -355,6 +366,8 @@ def render_chapter(idx: int) -> tuple[str, dict]:
     next_ch = CHAPTERS[idx + 1] if idx + 1 < len(CHAPTERS) else None
 
     toc_html = "".join(f'<li><a href="#{esc(t["id"])}">{t["name"]}</a></li>' for t in toc)
+    if used_refs:
+        toc_html += '<li><a href="#notes">Notes and sources</a></li>'
     terms_html = "".join(
         f'<li><a href="glossary.html#{tid}" class="term-chip">{esc(GLOSS_BY_ID[tid]["term"])}</a></li>'
         for tid in ch.get("key_terms", []) if tid in GLOSS_BY_ID)
@@ -384,7 +397,7 @@ def render_chapter(idx: int) -> tuple[str, dict]:
 <div class="layout">
 <aside class="side">
 <div class="side-sticky">
-<nav class="toc" aria-label="On this page"><div class="side-title">On this page</div><ol>{toc_html}<li><a href="#notes">Notes and sources</a></li></ol></nav>
+<nav class="toc" aria-label="On this page"><div class="side-title">On this page</div><ol>{toc_html}</ol></nav>
 <div class="side-block"><div class="side-title">Terms in this part</div><ul class="chips">{terms_html}</ul></div>
 <div class="side-block share"><div class="side-title">Share</div>
 <a class="btn small" href="https://www.linkedin.com/sharing/share-offsite/?url={esc(SITE_URL)}/{ch['slug']}.html" rel="noopener">LinkedIn</a>
@@ -414,13 +427,13 @@ def render_index(infos: list[dict]) -> str:
     for info in infos:
         ch = info["chapter"]
         cards += f"""
-<a class="card chapter-card" href="{ch['slug']}.html" style="--i:{ch['number']}">
+<article class="card chapter-card" style="--i:{ch['number']}">
 <div class="card-num">Part {ch['number']}</div>
 <div class="card-art">{figure(ch['cover'], ch['title'], None, 'thumb')}</div>
-<h3>{esc(ch['title'])}</h3>
+<h3><a href="{ch['slug']}.html">{esc(ch['title'])}</a></h3>
 <p>{esc(ch['summary'])}</p>
 <div class="card-meta">{info['minutes']} min · {len(info['diagrams'])} figures</div>
-</a>"""
+</article>"""
     n_workflows = len(CATALOG["workflows"])
     n_terms = len(GLOSSARY)
     n_figs = sum(len(i["diagrams"]) for i in infos)
