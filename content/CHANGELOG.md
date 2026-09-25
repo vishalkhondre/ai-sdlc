@@ -1,10 +1,10 @@
 # Changelog
 
-Content edition history. Only reader-visible changes to the chapters, catalog or terminology bump this version.
+Content edition history. Only reader-visible changes to the chapters, diagrams, catalog, terminology or references bump this version.
 
 ## 1.1.0 — 2026-09-25
 
-- Two new downloadable diagrams, not yet linked from any page: a one-page AI SDLC map in five bands (context, lifecycle, core, enablement, assurance) and an adoption-path companion. Both carry a text alternative and credit Böckeler for the terms they borrow.
+- Two new downloadable diagrams, listed on the References page: a one-page AI SDLC map in five bands (context, lifecycle, core, enablement, assurance) and an adoption-path companion. Each has a text alternative and footer credit lines for the terms it borrows: Böckeler for harness engineering, feedback path, validators and review skills; GitHub Spec Kit for spec-driven development; SAFe for the lifecycle levels and ceremonies.
 - References added for DORA's software delivery metrics, SAFe and SOC 2, which the map names.
 
 ## 1.0.0 — 2026-09-22

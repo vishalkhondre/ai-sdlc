@@ -9,9 +9,12 @@ Fails (exit 1) when:
   5. a diagram embed ![..](diagram:id) points at an id that does not exist
   6. a chapter mentions a vendor / organisation name the series has chosen to keep out of the prose
   7. diagram text (every <text>, <title> and <desc> in content/diagrams/svg) contains a keep-out name or a
-     product name: diagrams are not category pages, so they stay vendor-neutral (GR-3.3)
-  8. a diagram's data-references attribute names a key that is not in references.yml
-     (keys listed there count as cited, so a reference used only by a diagram is not dead)
+     product name: diagrams are not category pages, so they stay vendor-neutral (GR-3.3). Credit lines
+     (<text class="credit">) may name a source, as chapter notes may, but never a keep-out name.
+  8. a diagram's data-references attribute (on the root or a credit line) names a key that is not in
+     references.yml (keys listed there count as cited, so a reference used only by a diagram is not dead)
+  9. a diagram that no chapter embeds uses an adopted or adapted glossary term without a credit line
+     naming that term's source: a downloaded diagram has no chapter notes to carry the credit (GR-2.2)
 
 Run:  python scripts/check_citations.py
 """
@@ -41,29 +44,49 @@ PRODUCT_NAMES = [
 ]
 
 
-def diagram_text(svg: ET.Element) -> str:
-    """The reader-visible text of a diagram: text, title and desc elements, one per line."""
-    parts = []
+def diagram_text(svg: ET.Element) -> tuple[str, str, set[str]]:
+    """Reader-visible text of a diagram (text, title and desc elements, one per line), split into
+    body text and credit lines, plus the reference keys its credit lines declare."""
+    body, credits, credited = [], [], set()
     for el in svg.iter():
-        if el.tag.rsplit("}", 1)[-1] in ("text", "title", "desc"):
-            parts.append("".join(el.itertext()))
-    return "\n".join(parts)
+        if el.tag.rsplit("}", 1)[-1] not in ("text", "title", "desc"):
+            continue
+        if "credit" in (el.get("class") or "").split():
+            credits.append("".join(el.itertext()))
+            credited.update((el.get("data-references") or "").split())
+        else:
+            body.append("".join(el.itertext()))
+    return "\n".join(body), "\n".join(credits), credited
 
 
-def check_diagrams(refs: dict) -> tuple[list[str], set[str]]:
+def check_diagrams(refs: dict, glossary: list, embedded: set[str]) -> tuple[list[str], set[str]]:
     problems: list[str] = []
     cited: set[str] = set()
     for path in sorted((CONTENT / "diagrams" / "svg").glob("*.svg")):
         svg = ET.parse(path).getroot()
-        text = diagram_text(svg)
+        body, credits, credited = diagram_text(svg)
         for pat in BANNED_IN_PROSE + PRODUCT_NAMES:
-            for m in re.finditer(pat, text):
+            for m in re.finditer(pat, body):
                 problems.append(f"diagram {path.stem}: '{m.group(0)}' is a keep-out or product name; diagrams stay vendor-neutral")
-        for key in (svg.get("data-references") or "").split():
+        for pat in BANNED_IN_PROSE:
+            for m in re.finditer(pat, credits):
+                problems.append(f"diagram {path.stem}: credit line names '{m.group(0)}', which is on the keep-out list")
+        for key in sorted(set((svg.get("data-references") or "").split()) | credited):
             if key in refs:
                 cited.add(key)
             else:
                 problems.append(f"diagram {path.stem}: data-references key '{key}' is not in references.yml")
+        if path.stem in embedded:
+            continue  # the embedding chapter's notes carry the credit (checks 3 and 4)
+        for g in glossary:
+            if g.get("attribution") not in ("adopted", "adapted") or not g.get("source"):
+                continue
+            for name in [g["term"]] + list(g.get("match") or []):
+                if re.search(rf"\b{re.escape(name)}\b", body, flags=re.I):
+                    if g["source"] not in credited:
+                        problems.append(f"diagram {path.stem}: uses '{g['term']}' ({g['attribution']} from {g['source']}) "
+                                        f"but no credit line names {g['source']}")
+                    break
     return problems, cited
 
 
@@ -112,7 +135,10 @@ def main() -> int:
                 problems.append(f"{ch['id']}: line {line}: '{m.group(0)}' is on the keep-out list for chapter prose")
 
     used_refs: set[str] = set().union(*cited_by_chapter.values()) if cited_by_chapter else set()
-    diagram_problems, cited_by_diagrams = check_diagrams(refs)
+    embedded = set()
+    for ch in toc["chapters"]:
+        embedded |= set(re.findall(r"\]\(diagram:([a-z0-9\-]+)\)", (CONTENT / "chapters" / ch["file"]).read_text(encoding="utf-8")))
+    diagram_problems, cited_by_diagrams = check_diagrams(refs, glossary, embedded)
     problems += diagram_problems
     used_refs |= cited_by_diagrams
     for g in glossary:

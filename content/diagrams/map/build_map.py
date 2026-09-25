@@ -62,17 +62,22 @@ def chip(x, y, w, label, color, h=30, size=13):
     return r(x, y, w, h, "#fff", stroke, 1.2, 8) + t(x + w / 2, y + h / 2 + size * 0.36, label, size, dark, 600, "middle")
 
 
-CREDIT = "Harness engineering and feedback path: after Böckeler (martinfowler.com)"
-
-
 def svg_open(w: int, h: int, title: str, desc: str, refs: list[str]) -> str:
     """Root element with a text alternative and the reference keys the diagram relies on.
 
     scripts/check_citations.py checks each key in data-references against references.yml.
     """
     return (f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" '
-            f'role="img" font-family=\'{FONT}\' data-references="{" ".join(refs)}">'
+            f'font-family=\'{FONT}\' data-references="{" ".join(refs)}">'
             f"<title>{esc(title)}</title><desc>{esc(desc)}</desc>")
+
+
+def credit(x, y, text, refs: list[str], size=12, anchor="start") -> str:
+    """A credit line for borrowed terms. It may name a source (like a chapter footnote);
+    scripts/check_citations.py requires one for every adopted or adapted glossary term a
+    standalone diagram uses, and skips the product-name check on it."""
+    return (f'<text class="credit" data-references="{" ".join(refs)}" x="{x}" y="{y}" font-size="{size}" '
+            f'fill="{FAINT}" text-anchor="{anchor}">{esc(text)}</text>')
 
 
 def arrow_defs():
@@ -116,29 +121,34 @@ def bullet_col(x, y, w, h, title, items, color):
 
 MAP_DESC = (
     "A one-page map of the AI-assisted software lifecycle in five bands. "
-    "1 Context: project, product and flow type set the risk tier. "
-    "2 Lifecycle: SAFe levels (portfolio, release train, team), phases from idea to operate with the workflow in each, "
-    "Definition of Ready and Done, and a traceability spine from requirement to incident. "
+    "1 Context: project, product and flow type set the risk tier (HIL is hardware-in-the-loop testing, "
+    "OTA over-the-air updates, CVE a published vulnerability). "
+    "2 Lifecycle: SAFe levels (portfolio, Agile Release Train, team; WSJF is weighted shortest job first, "
+    "PI a program increment), phases from idea to operate with the workflow in each, Definition of Ready (DoR) "
+    "and Definition of Done (DoD), and a traceability spine from requirement to incident. Incident feedback "
+    "loops back to change what Specification asks. "
     "3 Core: harness engineering as the discipline, the Engineering Kit as the artefact, workflows as the unit of work, "
     "and the software factory as the operating state that emerges. "
-    "4 Enablement: agent runtime and tools, people and roles, and the operating model. "
-    "5 Assurance: evidence and traceability, standards and AI governance, and measurement. "
+    "4 Enablement: agent runtime and tools (MCP is the Model Context Protocol), people and roles "
+    "(PO / PM: product owner / product manager), and the operating model. "
+    "5 Assurance: evidence and traceability, standards and AI governance (templates include ADRs, "
+    "architecture decision records), and measurement. "
     "A footer shows the adoption path: deterministic floor, one workflow, a second workflow with hand-off, "
-    "feedback path proven, factory emerges. Harness engineering and feedback path follow Böckeler (martinfowler.com)."
+    "feedback path proven, factory emerges. Credit lines in the footer name the sources of borrowed terms."
 )
 PATH_DESC = (
     "Five adoption stages left to right: 0 Deterministic floor, 1 One workflow, 2 Second workflow and hand-off, "
     "3 Feedback path proven, 4 Factory emerges. For each stage the diagram lists what to build, what to measure, "
     "a suggested condition for moving on, and a failure pattern to watch for. "
     "The order is the point: skills, agents and platforms added before the floor and the first workflow tend to "
-    "become sprawl. Feedback path follows Böckeler (martinfowler.com)."
+    "become sprawl. A credit line in the footer names the sources of borrowed terms."
 )
 
 
 # ============================================================================ page 1
 def page_map() -> str:
-    W, H = 1600, 1134
-    s = [svg_open(W, H, "The AI SDLC on one page", MAP_DESC, ["bockeler-harness", "spec-kit", "safe-framework", "aicpa-soc2", "dora-metrics"]),
+    W, H = 1600, 1152
+    s = [svg_open(W, H, "The AI SDLC on one page", MAP_DESC, ["aicpa-soc2", "dora-metrics"]),
          arrow_defs(), f'<rect width="{W}" height="{H}" fill="#fff"/>',
          t(60, 58, "The AI SDLC on one page", 34, INK, 700),
          t(60, 88, "Five bands. Context sets the risk tier; the lifecycle says where; the core does the work; enablement makes it possible; assurance proves it.", 16, MUTE)]
@@ -277,8 +287,11 @@ def page_map() -> str:
         if i < 4:
             s.append(f'<line x1="{sx + w + 3}" y1="{fy + 19}" x2="{sx + w + 22}" y2="{fy + 19}" stroke="{FAINT}" stroke-width="1.5" marker-end="url(#a)"/>')
         sx += w + 25
-    s.append(t(60, fy + 64, CREDIT, 12, FAINT))
-    s.append(t(1540, fy + 64, "Detail on page 2.  Beyond Faster Coding · vishalkhondre.github.io/ai-sdlc", 12, FAINT, anchor="end"))
+    s.append(credit(60, fy + 64, "Harness engineering, feedback path and validators: after Böckeler (martinfowler.com)",
+                    ["bockeler-harness", "bockeler-sensors"]))
+    s.append(credit(60, fy + 82, "Spec-driven development: after GitHub Spec Kit · Lifecycle levels and ceremonies: SAFe terms (Scaled Agile, Inc.)",
+                    ["spec-kit", "safe-framework"]))
+    s.append(t(1540, fy + 64, "Detail: the adoption-path companion diagram.  Beyond Faster Coding · vishalkhondre.github.io/ai-sdlc", 12, FAINT, anchor="end"))
     s.append("</svg>")
     return "\n".join(s)
 
@@ -315,7 +328,7 @@ STAGES = [
 
 def page_path() -> str:
     W, H = 1600, 790
-    s = [svg_open(W, H, "Adoption path: one step at a time, one workflow at a time", PATH_DESC, ["bockeler-harness"]),
+    s = [svg_open(W, H, "Adoption path: one step at a time, one workflow at a time", PATH_DESC, []),
          arrow_defs(), f'<rect width="{W}" height="{H}" fill="#fff"/>',
          t(60, 58, "Adoption path: one step at a time, one workflow at a time", 32, INK, 700),
          t(60, 88, "Companion to the one-page map. Each stage has something to build, something to measure, and a condition for moving on.", 16, MUTE)]
@@ -348,7 +361,8 @@ def page_path() -> str:
             yy += 14
             if idx < 3:
                 s.append(f'<line x1="{x + 14}" y1="{yy - 12}" x2="{x + cw - 14}" y2="{yy - 12}" stroke="{LINE}" stroke-width="1"/>')
-    s.append(t(1540, H - 10, "Feedback path: after Böckeler (martinfowler.com)", 11, FAINT, anchor="end"))
+    s.append(credit(1540, H - 10, "Feedback path, validators and review skills: after Böckeler (martinfowler.com) · Inspect & Adapt: SAFe term (Scaled Agile, Inc.)",
+                    ["bockeler-harness", "bockeler-sensors", "safe-framework"], 11, "end"))
     s.append(t(800, H - 36, "The order is the point. Skills, agents and platforms added before the floor and the first workflow tend to become the sprawl they were meant to prevent.", 14, MUTE, anchor="middle", italic=True))
     s.append("</svg>")
     return "\n".join(s)

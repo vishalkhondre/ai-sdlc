@@ -42,5 +42,8 @@ examples on category pages.
 From review finding GR-3.3 on the 1.1.0 map (GR-5.3: a recurring finding becomes a check).
 `scripts/check_citations.py` now reads every diagram's text, title and description and fails on
 the keep-out list or a product name, and each diagram lists the references it relies on in a
-`data-references` attribute that the gate resolves. Rules out: product names in diagrams, and
-references that only a diagram uses being reported as dead.
+`data-references` attribute that the gate resolves. A diagram no chapter embeds must carry a
+credit line (`<text class="credit">`) naming the source of every adopted or adapted glossary
+term it uses; like a chapter footnote, a credit line may name a source product but never a
+keep-out name. Rules out: product names in diagram body text, uncredited borrowed terms in
+downloadable diagrams, and references that only a diagram uses being reported as dead.
