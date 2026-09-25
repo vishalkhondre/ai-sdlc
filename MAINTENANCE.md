@@ -6,7 +6,7 @@
 
 ## Where new work happens
 
-*AI SDLC on one page*, the reference site built around the five-band map, lives in
+*The AI SDLC Map*, the reference site built around the five-band map, lives in
 [`vishalkhondre/ai-sdlc-map`](https://github.com/vishalkhondre/ai-sdlc-map) and is published at
 <https://vishalkhondre.github.io/ai-sdlc-map/>. Its goal, ground rules, status, approach and
 decision log are in that repository's `CLAUDE.md` and `project/` folder, which moved there from

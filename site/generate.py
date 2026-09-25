@@ -487,8 +487,8 @@ def render_index(infos: list[dict]) -> str:
 
 <section class="section alt" id="whole-picture">
 <div class="section-inner">
-<div class="section-head"><h2>See the whole picture</h2><p>The series follows one change through the lifecycle. <a href="{MAP_SITE_URL}" rel="noopener">AI SDLC on one page</a> sets all of it on one map in five bands (context, lifecycle, core, enablement and assurance) with the adoption path, and links back to each part of this series.</p></div>
-<div class="hero-actions"><a class="btn primary" href="{MAP_SITE_URL}" rel="noopener">Open AI SDLC on one page</a></div>
+<div class="section-head"><h2>See the whole picture</h2><p>The series follows one change through the lifecycle. <a href="{MAP_SITE_URL}" rel="noopener">The AI SDLC Map</a> sets all of it on one page in five bands (context, lifecycle, core, enablement and assurance) with the adoption path, and links back to each part of this series.</p></div>
+<div class="hero-actions"><a class="btn primary" href="{MAP_SITE_URL}" rel="noopener">Open The AI SDLC Map</a></div>
 </div>
 </section>
 </main>
