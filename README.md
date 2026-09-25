@@ -4,6 +4,11 @@
 
 Read it at **https://vishalkhondre.github.io/ai-sdlc/**
 
+The series is complete and maintained only; see [`MAINTENANCE.md`](MAINTENANCE.md). The whole
+picture, *AI SDLC on one page*, is built in
+[`vishalkhondre/ai-sdlc-map`](https://github.com/vishalkhondre/ai-sdlc-map) and published at
+<https://vishalkhondre.github.io/ai-sdlc-map/>.
+
 | Part | Title |
 |---|---|
 | 1 | Faster coding is only part of the software delivery problem |

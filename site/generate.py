@@ -46,6 +46,8 @@ TITLE = TOC["title"]
 CHAPTERS = TOC["chapters"]
 BY_ID = {c["id"]: c for c in CHAPTERS}
 TODAY = date.today().isoformat()
+# The reference site built around the five-band map (decision D-010, recorded in that repository).
+MAP_SITE_URL = "https://vishalkhondre.github.io/ai-sdlc-map/"
 
 GLOSS_BY_ID = {g["id"]: g for g in GLOSSARY}
 
@@ -480,6 +482,13 @@ def render_index(infos: list[dict]) -> str:
 <a class="card" href="pr-verification-reference.html"><div class="card-num">Reference sheet</div><h3>Pull-request verification, generic and worked</h3><p>The five Part 7 images in two versions with the same layout: one filled with the export example, one left generic for a team to fill in its own rules, thresholds and tiers.</p></a>
 <a class="card" href="glossary.html"><div class="card-num">Terminology</div><h3>Every term, and where it comes from</h3><p>Which words are adopted from Böckeler and Thoughtworks, which are adapted, and which this series coined, with a translation table between the two vocabularies.</p></a>
 </div>
+</div>
+</section>
+
+<section class="section alt" id="whole-picture">
+<div class="section-inner">
+<div class="section-head"><h2>See the whole picture</h2><p>The series follows one change through the lifecycle. <a href="{MAP_SITE_URL}" rel="noopener">AI SDLC on one page</a> sets all of it on one map in five bands (context, lifecycle, core, enablement and assurance) with the adoption path, and links back to each part of this series.</p></div>
+<div class="hero-actions"><a class="btn primary" href="{MAP_SITE_URL}" rel="noopener">Open AI SDLC on one page</a></div>
 </div>
 </section>
 </main>
