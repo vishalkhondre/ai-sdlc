@@ -59,3 +59,27 @@ ashby:
   date: "1956"
   url: "https://en.wikipedia.org/wiki/Variety_(cybernetics)#Law_of_requisite_variety"
   note: "Cited by Böckeler for why a regulator needs as much variety as the system it governs; the reason narrowing what an agent may produce makes it easier to control."
+
+dora-metrics:
+  title: "DORA Research"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "Google, published on dora.dev"
+  url: "https://dora.dev/research/"
+  accessed: "2026-09-25"
+  note: "The research program behind the DORA Core model and its software delivery performance metrics, which the map's measurement band points to."
+
+safe-framework:
+  title: "Planning Interval (PI)"
+  author: "Scaled Agile, Inc."
+  org: "Scaled Agile Framework (SAFe), framework.scaledagile.com"
+  url: "https://framework.scaledagile.com/planning-interval"
+  accessed: "2026-09-25"
+  note: "SAFe's definition of the Planning Interval, the cadence behind PI planning, system demo and Inspect & Adapt. SAFe is also the source of the portfolio, Agile Release Train and team levels and WSJF on the map's lifecycle band; cited as one framework that uses these terms, not as a requirement."
+
+aicpa-soc2:
+  title: "2017 Trust Services Criteria (With Revised Points of Focus – 2022)"
+  author: "AICPA & CIMA"
+  org: "AICPA Assurance Services Executive Committee (ASEC)"
+  url: "https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022"
+  accessed: "2026-09-25"
+  note: "The control criteria used in SOC 2 examinations, including the change-management criteria behind the map's SOC 2 change controls."

@@ -20,6 +20,7 @@ import json
 import math
 import re
 import sys
+import xml.etree.ElementTree as ET
 from datetime import date
 from pathlib import Path
 
@@ -564,8 +565,19 @@ def render_references(infos: list[dict]) -> str:
         for k in [g.get("source")] + list(g.get("also") or []):
             if k:
                 used_by.setdefault(k, [])
+    by_diagram: dict[str, list[tuple[str, str]]] = {}
+    for p in sorted(DIAGRAMS_SVG.glob("*.svg")):
+        svg = ET.parse(p).getroot()
+        keys = set((svg.get("data-references") or "").split())
+        for el in svg.iter():
+            if "credit" in (el.get("class") or "").split():
+                keys.update((el.get("data-references") or "").split())
+        title = next((el.text for el in svg if el.tag.rsplit("}", 1)[-1] == "title" and el.text), p.stem)
+        for k in keys:
+            by_diagram.setdefault(k, []).append((p.stem, title))
     items = ""
     for k, r in REFERENCES.items():
+        diags = " ".join(f'<a class="chip" href="diagrams/{stem}.svg">{esc(title)}</a>' for stem, title in by_diagram.get(k, []))
         chs = " ".join(f'<a class="chip" href="{c["slug"]}.html">Part {c["number"]}</a>' for c in used_by.get(k, []))
         terms = " ".join(f'<a class="chip" href="glossary.html#{g["id"]}">{esc(g["term"])}</a>' for g in GLOSSARY if k in ([g.get("source")] + list(g.get("also") or [])))
         items += f"""
@@ -573,14 +585,14 @@ def render_references(infos: list[dict]) -> str:
 <h3><a href="{esc(r['url'])}" rel="noopener">{esc(r['title'])}</a></h3>
 <div class="muted">{esc(', '.join(x for x in [r.get('author'), r.get('org')] if x))}{(' · ' + esc(r['date'])) if r.get('date') else ''}</div>
 <p>{esc(r.get('note', ''))}</p>
-<div class="term-foot">{('<span class="k">Cited in</span> ' + chs) if chs else ''} {('<span class="k">Terms</span> ' + terms) if terms else ''}</div>
+<div class="term-foot">{('<span class="k">Cited in</span> ' + chs) if chs else ''} {('<span class="k">Terms</span> ' + terms) if terms else ''} {('<span class="k">Diagrams</span> ' + diags) if diags else ''}</div>
 </article>"""
     page = head(f"References · {TITLE}", "Canonical list of the sources this series cites.", "references.html")
     page += "<body>" + nav("glossary")
     page += f"""
 <main>
 <div class="hero hero-plain"><div class="hero-inner"><div class="crumbs"><a href="index.html">{esc(TITLE)}</a> <span>/</span> References</div><h1>References</h1>
-<p class="lede">Everything the series cites, in one place. Each chapter's own notes link here, and every glossary term that is adopted or adapted names one of these.</p></div></div>
+<p class="lede">Everything the series cites, in one place. Each chapter's own notes link here, every glossary term that is adopted or adapted names one of these, and each downloadable diagram lists the sources it draws on.</p></div></div>
 <div class="section-inner narrow"><section class="refs">{items}</section></div>
 </main>
 {glossary_json()}

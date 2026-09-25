@@ -1,0 +1,152 @@
+<svg width="1600" height="790" viewBox="0 0 1600 790" xmlns="http://www.w3.org/2000/svg" font-family='"Liberation Sans","DejaVu Sans",Arial,sans-serif' data-references=""><title>Adoption path: one step at a time, one workflow at a time</title><desc>Five adoption stages left to right: 0 Deterministic floor, 1 One workflow, 2 Second workflow and hand-off, 3 Feedback path proven, 4 Factory emerges. For each stage the diagram lists what to build, what to measure, a suggested condition for moving on, and a failure pattern to watch for. The order is the point: skills, agents and platforms added before the floor and the first workflow tend to become sprawl. A credit line in the footer names the sources of borrowed terms.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#888780" stroke-width="1.6"/></marker><marker id="p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#534AB7" stroke-width="1.6"/></marker><marker id="r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#993C1D" stroke-width="1.6"/></marker></defs>
+<rect width="1600" height="790" fill="#fff"/>
+<text x="60" y="58" font-size="32" fill="#1f1f1c" font-weight="700" text-anchor="start">Adoption path: one step at a time, one workflow at a time</text>
+<text x="60" y="88" font-size="16" fill="#5F5E5A" font-weight="400" text-anchor="start">Companion to the one-page map. Each stage has something to build, something to measure, and a condition for moving on.</text>
+<rect x="66" y="120" width="280" height="70" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.6"/>
+<text x="82" y="146" font-size="11.5" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">STAGE 0</text><text x="82" y="172" font-size="18" fill="#04342C" font-weight="700" text-anchor="start">Deterministic floor</text>
+<line x1="348" y1="155" x2="360" y2="155" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="66" y="202" width="280" height="500" rx="12" fill="#fff" stroke="#0F6E56" stroke-width="1.2"/>
+<text x="82" y="230" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">BUILD</text>
+<circle cx="86" cy="245.5" r="2.4" fill="#0F6E56"/>
+<text x="96" y="250" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">A quality command that runs the</text>
+<text x="96" y="268" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">same way locally and in CI</text>
+<circle cx="86" cy="286.5" r="2.4" fill="#0F6E56"/>
+<text x="96" y="291" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Suggested: 3–5 validators for</text>
+<text x="96" y="309" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">rules the team has already been</text>
+<text x="96" y="327" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">hurt by</text>
+<circle cx="86" cy="345.5" r="2.4" fill="#0F6E56"/>
+<text x="96" y="350" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Rule registry: every rule gets</text>
+<text x="96" y="368" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">an ID, a route and an owner</text>
+<circle cx="86" cy="386.5" r="2.4" fill="#0F6E56"/>
+<text x="96" y="391" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Evidence schema; branch</text>
+<text x="96" y="409" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">protection actually enforced</text>
+<line x1="80" y1="434" x2="332" y2="434" stroke="#d3d1c7" stroke-width="1"/>
+<text x="82" y="446" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">MEASURE</text>
+<circle cx="86" cy="461.5" r="2.4" fill="#0F6E56"/>
+<text x="96" y="466" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Baseline: lead time, review</text>
+<text x="96" y="484" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">time, escaped defects</text>
+<circle cx="86" cy="502.5" r="2.4" fill="#0F6E56"/>
+<text x="96" y="507" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Share of rules still</text>
+<text x="96" y="525" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">guidance-only</text>
+<line x1="80" y1="550" x2="332" y2="550" stroke="#d3d1c7" stroke-width="1"/>
+<text x="82" y="562" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">MOVE ON WHEN</text>
+<text x="82" y="582" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">Every merge passes the same</text><text x="82" y="600" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">checks, and enforcement is</text><text x="82" y="618" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">verified, not assumed.</text>
+<line x1="80" y1="643" x2="332" y2="643" stroke="#d3d1c7" stroke-width="1"/>
+<text x="82" y="655" font-size="11" fill="#0F6E56" font-weight="700" text-anchor="start" letter-spacing="0.6">WATCH FOR</text>
+<text x="82" y="675" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">Skipping straight to skills and</text><text x="82" y="693" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">agents on top of no gates.</text>
+<rect x="363" y="120" width="280" height="70" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.6"/>
+<text x="379" y="146" font-size="11.5" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">STAGE 1</text><text x="379" y="172" font-size="18" fill="#26215C" font-weight="700" text-anchor="start">One workflow</text>
+<line x1="645" y1="155" x2="657" y2="155" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="363" y="202" width="280" height="500" rx="12" fill="#fff" stroke="#534AB7" stroke-width="1.2"/>
+<text x="379" y="230" font-size="11" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">BUILD</text>
+<circle cx="383" cy="245.5" r="2.4" fill="#534AB7"/>
+<text x="393" y="250" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Pull-request verification end to</text>
+<text x="393" y="268" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">end</text>
+<circle cx="383" cy="286.5" r="2.4" fill="#534AB7"/>
+<text x="393" y="291" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Review skill with an evaluation</text>
+<text x="393" y="309" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">set before it ships</text>
+<circle cx="383" cy="327.5" r="2.4" fill="#534AB7"/>
+<text x="393" y="332" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Risk tiers; failure paths</text>
+<text x="393" y="350" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">including could_not_run</text>
+<circle cx="383" cy="368.5" r="2.4" fill="#534AB7"/>
+<text x="393" y="373" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Expected checks recorded before</text>
+<text x="393" y="391" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">results</text>
+<line x1="377" y1="416" x2="629" y2="416" stroke="#d3d1c7" stroke-width="1"/>
+<text x="379" y="428" font-size="11" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">MEASURE</text>
+<circle cx="383" cy="443.5" r="2.4" fill="#534AB7"/>
+<text x="393" y="448" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Reviewer minutes per PR</text>
+<circle cx="383" cy="466.5" r="2.4" fill="#534AB7"/>
+<text x="393" y="471" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Blocks by checks vs by people</text>
+<circle cx="383" cy="489.5" r="2.4" fill="#534AB7"/>
+<text x="393" y="494" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Agent finding acceptance rate</text>
+<line x1="377" y1="519" x2="629" y2="519" stroke="#d3d1c7" stroke-width="1"/>
+<text x="379" y="531" font-size="11" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">MOVE ON WHEN</text>
+<text x="379" y="551" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">Suggested: run on 20+ real</text><text x="379" y="569" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">changes, evidence every time, one</text><text x="379" y="587" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">measure better than baseline.</text>
+<line x1="377" y1="612" x2="629" y2="612" stroke="#d3d1c7" stroke-width="1"/>
+<text x="379" y="624" font-size="11" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">WATCH FOR</text>
+<text x="379" y="644" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">A demo-quality skill with no evals</text><text x="379" y="662" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">treated as a gate.</text>
+<rect x="660" y="120" width="280" height="70" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.6"/>
+<text x="676" y="146" font-size="11.5" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">STAGE 2</text><text x="676" y="172" font-size="18" fill="#26215C" font-weight="700" text-anchor="start">Second workflow + hand-off</text>
+<line x1="942" y1="155" x2="954" y2="155" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="660" y="202" width="280" height="500" rx="12" fill="#fff" stroke="#534AB7" stroke-width="1.2"/>
+<text x="676" y="230" font-size="11" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">BUILD</text>
+<circle cx="680" cy="245.5" r="2.4" fill="#534AB7"/>
+<text x="690" y="250" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Specification readiness as the</text>
+<text x="690" y="268" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Definition of Ready</text>
+<circle cx="680" cy="286.5" r="2.4" fill="#534AB7"/>
+<text x="690" y="291" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Risk tier set at spec, read by</text>
+<text x="690" y="309" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">verification</text>
+<circle cx="680" cy="327.5" r="2.4" fill="#534AB7"/>
+<text x="690" y="332" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Readiness record consumed</text>
+<text x="690" y="350" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">automatically</text>
+<line x1="674" y1="375" x2="926" y2="375" stroke="#d3d1c7" stroke-width="1"/>
+<text x="676" y="387" font-size="11" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">MEASURE</text>
+<circle cx="680" cy="402.5" r="2.4" fill="#534AB7"/>
+<text x="690" y="407" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Work returned for clarification</text>
+<circle cx="680" cy="425.5" r="2.4" fill="#534AB7"/>
+<text x="690" y="430" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Time waiting on decisions</text>
+<line x1="674" y1="455" x2="926" y2="455" stroke="#d3d1c7" stroke-width="1"/>
+<text x="676" y="467" font-size="11" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">MOVE ON WHEN</text>
+<text x="676" y="487" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">Verification reads readiness</text><text x="676" y="505" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">evidence without anyone copying it</text><text x="676" y="523" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">across.</text>
+<line x1="674" y1="548" x2="926" y2="548" stroke="#d3d1c7" stroke-width="1"/>
+<text x="676" y="560" font-size="11" fill="#534AB7" font-weight="700" text-anchor="start" letter-spacing="0.6">WATCH FOR</text>
+<text x="676" y="580" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">Each workflow inventing its own</text><text x="676" y="598" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">evidence format.</text>
+<rect x="957" y="120" width="280" height="70" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="1.6"/>
+<text x="973" y="146" font-size="11.5" fill="#993C1D" font-weight="700" text-anchor="start" letter-spacing="0.6">STAGE 3</text><text x="973" y="172" font-size="18" fill="#4A1B0C" font-weight="700" text-anchor="start">Feedback path proven</text>
+<line x1="1239" y1="155" x2="1251" y2="155" stroke="#888780" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="957" y="202" width="280" height="500" rx="12" fill="#fff" stroke="#993C1D" stroke-width="1.2"/>
+<text x="973" y="230" font-size="11" fill="#993C1D" font-weight="700" text-anchor="start" letter-spacing="0.6">BUILD</text>
+<circle cx="977" cy="245.5" r="2.4" fill="#993C1D"/>
+<text x="987" y="250" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Incident review converts</text>
+<text x="987" y="268" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">findings: criterion, test,</text>
+<text x="987" y="286" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">validator or eval</text>
+<circle cx="977" cy="304.5" r="2.4" fill="#993C1D"/>
+<text x="987" y="309" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Inspect &amp; Adapt reviews which</text>
+<text x="987" y="327" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">conversions landed</text>
+<circle cx="977" cy="345.5" r="2.4" fill="#993C1D"/>
+<text x="987" y="350" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Kit versioned; changes go</text>
+<text x="987" y="368" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">through the kit's own tests</text>
+<line x1="971" y1="393" x2="1223" y2="393" stroke="#d3d1c7" stroke-width="1"/>
+<text x="973" y="405" font-size="11" fill="#993C1D" font-weight="700" text-anchor="start" letter-spacing="0.6">MEASURE</text>
+<circle cx="977" cy="420.5" r="2.4" fill="#993C1D"/>
+<text x="987" y="425" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Repeat defect categories</text>
+<circle cx="977" cy="443.5" r="2.4" fill="#993C1D"/>
+<text x="987" y="448" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Conversions closed vs opened</text>
+<line x1="971" y1="473" x2="1223" y2="473" stroke="#d3d1c7" stroke-width="1"/>
+<text x="973" y="485" font-size="11" fill="#993C1D" font-weight="700" text-anchor="start" letter-spacing="0.6">MOVE ON WHEN</text>
+<text x="973" y="505" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">Suggested: each of the last three</text><text x="973" y="523" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">incidents changed an upstream</text><text x="973" y="541" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">check.</text>
+<line x1="971" y1="566" x2="1223" y2="566" stroke="#d3d1c7" stroke-width="1"/>
+<text x="973" y="578" font-size="11" fill="#993C1D" font-weight="700" text-anchor="start" letter-spacing="0.6">WATCH FOR</text>
+<text x="973" y="598" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">Retro actions that are written</text><text x="973" y="616" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">down and never close.</text>
+<rect x="1254" y="120" width="280" height="70" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1.6"/>
+<text x="1270" y="146" font-size="11.5" fill="#888780" font-weight="700" text-anchor="start" letter-spacing="0.6">STAGE 4</text><text x="1270" y="172" font-size="18" fill="#2C2C2A" font-weight="700" text-anchor="start">Factory emerges</text>
+<rect x="1254" y="202" width="280" height="500" rx="12" fill="#fff" stroke="#888780" stroke-width="1.2"/>
+<text x="1270" y="230" font-size="11" fill="#888780" font-weight="700" text-anchor="start" letter-spacing="0.6">BUILD</text>
+<circle cx="1274" cy="245.5" r="2.4" fill="#888780"/>
+<text x="1284" y="250" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Shared registry and evidence</text>
+<text x="1284" y="268" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">across workflows</text>
+<circle cx="1274" cy="286.5" r="2.4" fill="#888780"/>
+<text x="1284" y="291" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">A second team installs the kit</text>
+<text x="1284" y="309" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">and passes its first feature</text>
+<circle cx="1274" cy="327.5" r="2.4" fill="#888780"/>
+<text x="1284" y="332" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Named owner for the connections</text>
+<text x="1284" y="350" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">between workflows</text>
+<line x1="1268" y1="375" x2="1520" y2="375" stroke="#d3d1c7" stroke-width="1"/>
+<text x="1270" y="387" font-size="11" fill="#888780" font-weight="700" text-anchor="start" letter-spacing="0.6">MEASURE</text>
+<circle cx="1274" cy="402.5" r="2.4" fill="#888780"/>
+<text x="1284" y="407" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Requirement-to-release time</text>
+<circle cx="1274" cy="425.5" r="2.4" fill="#888780"/>
+<text x="1284" y="430" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Escaped defects vs throughput</text>
+<circle cx="1274" cy="448.5" r="2.4" fill="#888780"/>
+<text x="1284" y="453" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">Cost per change incl. tokens and</text>
+<text x="1284" y="471" font-size="13.5" fill="#1f1f1c" font-weight="400" text-anchor="start">evals</text>
+<line x1="1268" y1="496" x2="1520" y2="496" stroke="#d3d1c7" stroke-width="1"/>
+<text x="1270" y="508" font-size="11" fill="#888780" font-weight="700" text-anchor="start" letter-spacing="0.6">MOVE ON WHEN</text>
+<text x="1270" y="528" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">A second team adopts the kit</text><text x="1270" y="546" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">without the original author in the</text><text x="1270" y="564" font-size="13.5" fill="#1f1f1c" font-weight="600" text-anchor="start">room.</text>
+<line x1="1268" y1="589" x2="1520" y2="589" stroke="#d3d1c7" stroke-width="1"/>
+<text x="1270" y="601" font-size="11" fill="#888780" font-weight="700" text-anchor="start" letter-spacing="0.6">WATCH FOR</text>
+<text x="1270" y="621" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">Building the platform before the</text><text x="1270" y="639" font-size="13.5" fill="#993C1D" font-weight="400" text-anchor="start">workflows exist.</text>
+<text class="credit" data-references="bockeler-harness bockeler-sensors safe-framework" x="1540" y="780" font-size="11" fill="#888780" text-anchor="end">Feedback path, validators and review skills: after Böckeler (martinfowler.com) · Inspect &amp; Adapt: SAFe term (Scaled Agile, Inc.)</text>
+<text x="800" y="754" font-size="14" fill="#5F5E5A" font-weight="400" text-anchor="middle" font-style="italic">The order is the point. Skills, agents and platforms added before the floor and the first workflow tend to become the sprawl they were meant to prevent.</text>
+</svg>
