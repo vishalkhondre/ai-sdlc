@@ -4,8 +4,8 @@ Content edition history. Only reader-visible changes to the chapters, catalog or
 
 ## 1.1.0 — 2026-09-25
 
-- One-page AI SDLC map in five bands: context, lifecycle, core, enablement and assurance.
-- Adoption-path companion page.
+- Two new downloadable diagrams, not yet linked from any page: a one-page AI SDLC map in five bands (context, lifecycle, core, enablement, assurance) and an adoption-path companion. Both carry a text alternative and credit Böckeler for the terms they borrow.
+- References added for DORA's software delivery metrics, SAFe and SOC 2, which the map names.
 
 ## 1.0.0 — 2026-09-22
 

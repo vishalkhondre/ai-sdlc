@@ -8,6 +8,10 @@ Fails (exit 1) when:
   4. a reference in references.yml is never cited by any chapter or glossary term (dead reference)
   5. a diagram embed ![..](diagram:id) points at an id that does not exist
   6. a chapter mentions a vendor / organisation name the series has chosen to keep out of the prose
+  7. diagram text (every <text>, <title> and <desc> in content/diagrams/svg) contains a keep-out name or a
+     product name: diagrams are not category pages, so they stay vendor-neutral (GR-3.3)
+  8. a diagram's data-references attribute names a key that is not in references.yml
+     (keys listed there count as cited, so a reference used only by a diagram is not dead)
 
 Run:  python scripts/check_citations.py
 """
@@ -15,6 +19,7 @@ from __future__ import annotations
 
 import re
 import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import yaml
@@ -27,6 +32,39 @@ BANNED_IN_PROSE = [
     r"\bCursor\b", r"\bCopilot\b", r"\bLovable\b", r"\bClaude\b", r"\bChatGPT\b", r"\bGemini\b",
     r"\bAzure DevOps\b", r"\bJira\b", r"\bRegal\b", r"\bRexnord\b", r"\bRRX\b", r"\bNRC\b",
 ]
+
+# Product names allowed only on a page about their category (GR-3.3); never in a diagram.
+PRODUCT_NAMES = [
+    r"\bGitHub\b", r"\bGitLab\b", r"\bBitbucket\b", r"\bConfluence\b", r"\bSpec Kit\b", r"\bOpenSpec\b",
+    r"\bJenkins\b", r"\bCircleCI\b", r"\bCodex\b", r"\bWindsurf\b", r"\bDevin\b", r"\bKiro\b",
+    r"\bCodeRabbit\b", r"\bSonarQube\b", r"\bSnyk\b",
+]
+
+
+def diagram_text(svg: ET.Element) -> str:
+    """The reader-visible text of a diagram: text, title and desc elements, one per line."""
+    parts = []
+    for el in svg.iter():
+        if el.tag.rsplit("}", 1)[-1] in ("text", "title", "desc"):
+            parts.append("".join(el.itertext()))
+    return "\n".join(parts)
+
+
+def check_diagrams(refs: dict) -> tuple[list[str], set[str]]:
+    problems: list[str] = []
+    cited: set[str] = set()
+    for path in sorted((CONTENT / "diagrams" / "svg").glob("*.svg")):
+        svg = ET.parse(path).getroot()
+        text = diagram_text(svg)
+        for pat in BANNED_IN_PROSE + PRODUCT_NAMES:
+            for m in re.finditer(pat, text):
+                problems.append(f"diagram {path.stem}: '{m.group(0)}' is a keep-out or product name; diagrams stay vendor-neutral")
+        for key in (svg.get("data-references") or "").split():
+            if key in refs:
+                cited.add(key)
+            else:
+                problems.append(f"diagram {path.stem}: data-references key '{key}' is not in references.yml")
+    return problems, cited
 
 
 def main() -> int:
@@ -74,6 +112,9 @@ def main() -> int:
                 problems.append(f"{ch['id']}: line {line}: '{m.group(0)}' is on the keep-out list for chapter prose")
 
     used_refs: set[str] = set().union(*cited_by_chapter.values()) if cited_by_chapter else set()
+    diagram_problems, cited_by_diagrams = check_diagrams(refs)
+    problems += diagram_problems
+    used_refs |= cited_by_diagrams
     for g in glossary:
         attr = g.get("attribution")
         src = g.get("source")
@@ -97,7 +138,7 @@ def main() -> int:
                 problems.append(f"glossary '{g['id']}': unknown chapter '{cid}'")
     for k in refs:
         if k not in used_refs:
-            problems.append(f"references.yml: '{k}' is never cited by a chapter or a glossary term")
+            problems.append(f"references.yml: '{k}' is never cited by a chapter, a glossary term or a diagram")
 
     if problems:
         print("Citation check FAILED:")

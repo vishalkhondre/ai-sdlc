@@ -37,3 +37,10 @@ No provisional language on the site; unwritten map boxes appear as plain labels.
 ## D-008 · Diagrams as code, vendor-neutral
 All diagrams are generated from source, with text alternatives. Tool names appear only as
 examples on category pages.
+
+## D-009 · Diagram text is gated like prose
+From review finding GR-3.3 on the 1.1.0 map (GR-5.3: a recurring finding becomes a check).
+`scripts/check_citations.py` now reads every diagram's text, title and description and fails on
+the keep-out list or a product name, and each diagram lists the references it relies on in a
+`data-references` attribute that the gate resolves. Rules out: product names in diagrams, and
+references that only a diagram uses being reported as dead.

@@ -59,3 +59,24 @@ ashby:
   date: "1956"
   url: "https://en.wikipedia.org/wiki/Variety_(cybernetics)#Law_of_requisite_variety"
   note: "Cited by Böckeler for why a regulator needs as much variety as the system it governs; the reason narrowing what an agent may produce makes it easier to control."
+
+dora-metrics:
+  title: "DORA’s software delivery performance metrics"
+  author: "DORA (DevOps Research and Assessment)"
+  org: "dora.dev"
+  url: "https://dora.dev/guides/dora-metrics/"
+  note: "The software delivery throughput and instability metrics, originally the four keys and now five; the map's measurement band points here."
+
+safe-framework:
+  title: "SAFe 6.0 — Scaled Agile Framework"
+  author: "Scaled Agile, Inc."
+  org: "framework.scaledagile.com"
+  url: "https://framework.scaledagile.com/"
+  note: "Source of the portfolio, Agile Release Train and team levels, PI planning, WSJF, system demo and Inspect & Adapt named on the map's lifecycle band. Cited as one framework that uses these terms, not as a requirement."
+
+aicpa-soc2:
+  title: "SOC 2® — SOC for Service Organizations: Trust Services Criteria"
+  author: "AICPA & CIMA"
+  org: "aicpa-cima.com"
+  url: "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2"
+  note: "The attestation framework behind the change controls named on the map's assurance band."

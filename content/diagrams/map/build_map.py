@@ -62,6 +62,19 @@ def chip(x, y, w, label, color, h=30, size=13):
     return r(x, y, w, h, "#fff", stroke, 1.2, 8) + t(x + w / 2, y + h / 2 + size * 0.36, label, size, dark, 600, "middle")
 
 
+CREDIT = "Harness engineering and feedback path: after Böckeler (martinfowler.com)"
+
+
+def svg_open(w: int, h: int, title: str, desc: str, refs: list[str]) -> str:
+    """Root element with a text alternative and the reference keys the diagram relies on.
+
+    scripts/check_citations.py checks each key in data-references against references.yml.
+    """
+    return (f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" '
+            f'role="img" font-family=\'{FONT}\' data-references="{" ".join(refs)}">'
+            f"<title>{esc(title)}</title><desc>{esc(desc)}</desc>")
+
+
 def arrow_defs():
     out = "<defs>"
     for name, col in [("a", FAINT), ("p", C["purple"][0]), ("r", C["coral"][0])]:
@@ -101,10 +114,31 @@ def bullet_col(x, y, w, h, title, items, color):
     return s
 
 
+MAP_DESC = (
+    "A one-page map of the AI-assisted software lifecycle in five bands. "
+    "1 Context: project, product and flow type set the risk tier. "
+    "2 Lifecycle: SAFe levels (portfolio, release train, team), phases from idea to operate with the workflow in each, "
+    "Definition of Ready and Done, and a traceability spine from requirement to incident. "
+    "3 Core: harness engineering as the discipline, the Engineering Kit as the artefact, workflows as the unit of work, "
+    "and the software factory as the operating state that emerges. "
+    "4 Enablement: agent runtime and tools, people and roles, and the operating model. "
+    "5 Assurance: evidence and traceability, standards and AI governance, and measurement. "
+    "A footer shows the adoption path: deterministic floor, one workflow, a second workflow with hand-off, "
+    "feedback path proven, factory emerges. Harness engineering and feedback path follow Böckeler (martinfowler.com)."
+)
+PATH_DESC = (
+    "Five adoption stages left to right: 0 Deterministic floor, 1 One workflow, 2 Second workflow and hand-off, "
+    "3 Feedback path proven, 4 Factory emerges. For each stage the diagram lists what to build, what to measure, "
+    "a suggested condition for moving on, and a failure pattern to watch for. "
+    "The order is the point: skills, agents and platforms added before the floor and the first workflow tend to "
+    "become sprawl. Feedback path follows Böckeler (martinfowler.com)."
+)
+
+
 # ============================================================================ page 1
 def page_map() -> str:
     W, H = 1600, 1134
-    s = [f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" font-family=\'{FONT}\'>',
+    s = [svg_open(W, H, "The AI SDLC on one page", MAP_DESC, ["bockeler-harness", "spec-kit", "safe-framework", "aicpa-soc2", "dora-metrics"]),
          arrow_defs(), f'<rect width="{W}" height="{H}" fill="#fff"/>',
          t(60, 58, "The AI SDLC on one page", 34, INK, 700),
          t(60, 88, "Five bands. Context sets the risk tier; the lifecycle says where; the core does the work; enablement makes it possible; assurance proves it.", 16, MUTE)]
@@ -198,7 +232,7 @@ def page_map() -> str:
     s.append(bullet_col(250, y0, 420, h, "Agent runtime & tools", [
         "Coding agents and agentic IDEs; model providers",
         "Tool access (MCP), sandboxes, permissions, secrets",
-        "SDD frameworks: GitHub Spec Kit, OpenSpec",
+        "Spec-driven development (SDD) frameworks",
         "CI runner and change host, bound by thin adapters"], "teal"))
     s.append(bullet_col(685, y0, 420, h, "People & roles", [
         "PO / PM own intent and open decisions",
@@ -209,7 +243,7 @@ def page_map() -> str:
     s.append(bullet_col(1120, y0, 420, h, "Operating model", [
         "Scrum / Kanban teams on an Agile Release Train",
         "PI cadence, system demo, Inspect & Adapt",
-        "Backlog and records in Jira / Confluence",
+        "Work tracking & knowledge base",
         "Decision rights and approvals; policy wins"], "teal"))
 
     # ---------------- band 5: assurance
@@ -227,7 +261,7 @@ def page_map() -> str:
         "Agent permissions reviewed as privileged access"], "coral"))
     s.append(bullet_col(1120, y0, 420, h, "Measurement", [
         "Baseline before changing anything",
-        "Flow metrics and the four DORA keys",
+        "Flow metrics and DORA delivery metrics",
         "Escaped defects; reviewer load and concentration",
         "Cost per change, including tokens and evals"], "coral"))
 
@@ -243,6 +277,7 @@ def page_map() -> str:
         if i < 4:
             s.append(f'<line x1="{sx + w + 3}" y1="{fy + 19}" x2="{sx + w + 22}" y2="{fy + 19}" stroke="{FAINT}" stroke-width="1.5" marker-end="url(#a)"/>')
         sx += w + 25
+    s.append(t(60, fy + 64, CREDIT, 12, FAINT))
     s.append(t(1540, fy + 64, "Detail on page 2.  Beyond Faster Coding · vishalkhondre.github.io/ai-sdlc", 12, FAINT, anchor="end"))
     s.append("</svg>")
     return "\n".join(s)
@@ -251,14 +286,14 @@ def page_map() -> str:
 # ============================================================================ page 2
 STAGES = [
     ("0", "Deterministic floor", "teal",
-     ["A quality command that runs the same way locally and in CI", "3–5 validators for rules the team has already been hurt by", "Rule registry: every rule gets an ID, a route and an owner", "Evidence schema; branch protection actually enforced"],
+     ["A quality command that runs the same way locally and in CI", "Suggested: 3–5 validators for rules the team has already been hurt by", "Rule registry: every rule gets an ID, a route and an owner", "Evidence schema; branch protection actually enforced"],
      ["Baseline: lead time, review time, escaped defects", "Share of rules still guidance-only"],
      "Every merge passes the same checks, and enforcement is verified, not assumed.",
      "Skipping straight to skills and agents on top of no gates."),
     ("1", "One workflow", "purple",
      ["Pull-request verification end to end", "Review skill with an evaluation set before it ships", "Risk tiers; failure paths including could_not_run", "Expected checks recorded before results"],
      ["Reviewer minutes per PR", "Blocks by checks vs by people", "Agent finding acceptance rate"],
-     "Run on 20+ real changes, evidence every time, one measure better than baseline.",
+     "Suggested: run on 20+ real changes, evidence every time, one measure better than baseline.",
      "A demo-quality skill with no evals treated as a gate."),
     ("2", "Second workflow + hand-off", "purple",
      ["Specification readiness as the Definition of Ready", "Risk tier set at spec, read by verification", "Readiness record consumed automatically"],
@@ -268,7 +303,7 @@ STAGES = [
     ("3", "Feedback path proven", "coral",
      ["Incident review converts findings: criterion, test, validator or eval", "Inspect & Adapt reviews which conversions landed", "Kit versioned; changes go through the kit's own tests"],
      ["Repeat defect categories", "Conversions closed vs opened"],
-     "Each of the last three incidents changed an upstream check.",
+     "Suggested: each of the last three incidents changed an upstream check.",
      "Retro actions that are written down and never close."),
     ("4", "Factory emerges", "grey",
      ["Shared registry and evidence across workflows", "A second team installs the kit and passes its first feature", "Named owner for the connections between workflows"],
@@ -280,7 +315,7 @@ STAGES = [
 
 def page_path() -> str:
     W, H = 1600, 790
-    s = [f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" font-family=\'{FONT}\'>',
+    s = [svg_open(W, H, "Adoption path: one step at a time, one workflow at a time", PATH_DESC, ["bockeler-harness"]),
          arrow_defs(), f'<rect width="{W}" height="{H}" fill="#fff"/>',
          t(60, 58, "Adoption path: one step at a time, one workflow at a time", 32, INK, 700),
          t(60, 88, "Companion to the one-page map. Each stage has something to build, something to measure, and a condition for moving on.", 16, MUTE)]
@@ -313,7 +348,8 @@ def page_path() -> str:
             yy += 14
             if idx < 3:
                 s.append(f'<line x1="{x + 14}" y1="{yy - 12}" x2="{x + cw - 14}" y2="{yy - 12}" stroke="{LINE}" stroke-width="1"/>')
-    s.append(t(800, H - 30, "The order is the point. Skills, agents and platforms added before the floor and the first workflow tend to become the sprawl they were meant to prevent.", 14, MUTE, anchor="middle", italic=True))
+    s.append(t(1540, H - 10, "Feedback path: after Böckeler (martinfowler.com)", 11, FAINT, anchor="end"))
+    s.append(t(800, H - 36, "The order is the point. Skills, agents and platforms added before the floor and the first workflow tend to become the sprawl they were meant to prevent.", 14, MUTE, anchor="middle", italic=True))
     s.append("</svg>")
     return "\n".join(s)
 
