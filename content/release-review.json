@@ -1,0 +1,6 @@
+{
+  "verdict": "ACCEPT",
+  "source_sha256": "d41bc40f099d29d0f1b0148cf54451abe12af17a16307f082cb5135970a15ade",
+  "report": "content/reviews/1.1.0-references-confirmation.md",
+  "report_sha256": "e19cb15f7de085b85d20ab28550b18a9de9f015334778b5ab825d4441ad07e74"
+}
