@@ -124,7 +124,7 @@ MAP_DESC = (
     "1 Context: project, product and flow type set the risk tier (HIL is hardware-in-the-loop testing, "
     "OTA over-the-air updates, CVE a published vulnerability). "
     "2 Lifecycle: SAFe levels (portfolio, Agile Release Train, team; WSJF is weighted shortest job first, "
-    "PI a program increment), phases from idea to operate with the workflow in each, Definition of Ready (DoR) "
+    "PI a planning interval), phases from idea to operate with the workflow in each, Definition of Ready (DoR) "
     "and Definition of Done (DoD), and a traceability spine from requirement to incident. Incident feedback "
     "loops back to change what Specification asks. "
     "3 Core: harness engineering as the discipline, the Engineering Kit as the artefact, workflows as the unit of work, "
@@ -289,7 +289,7 @@ def page_map() -> str:
         sx += w + 25
     s.append(credit(60, fy + 64, "Harness engineering, feedback path and validators: after Böckeler (martinfowler.com)",
                     ["bockeler-harness", "bockeler-sensors"]))
-    s.append(credit(60, fy + 82, "Spec-driven development: after GitHub Spec Kit · Lifecycle levels and ceremonies: SAFe terms (Scaled Agile, Inc.)",
+    s.append(credit(60, fy + 82, "Spec-driven development: after GitHub Spec Kit · Lifecycle terms: SAFe (Scaled Agile, Inc.)",
                     ["spec-kit", "safe-framework"]))
     s.append(t(1540, fy + 64, "Detail: the adoption-path companion diagram.  Beyond Faster Coding · vishalkhondre.github.io/ai-sdlc", 12, FAINT, anchor="end"))
     s.append("</svg>")

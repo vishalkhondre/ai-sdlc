@@ -65,6 +65,7 @@ dora-metrics:
   author: "DORA (DevOps Research and Assessment)"
   org: "dora.dev"
   url: "https://dora.dev/guides/dora-metrics/"
+  accessed: "2026-09-25"  # title and URL confirmed from search results; direct fetch blocked in the authoring session
   note: "The software delivery throughput and instability metrics, originally the four keys and now five; the map's measurement band points here."
 
 safe-framework:
@@ -72,6 +73,7 @@ safe-framework:
   author: "Scaled Agile, Inc."
   org: "framework.scaledagile.com"
   url: "https://framework.scaledagile.com/"
+  accessed: "2026-09-25"  # title and URL confirmed from search results; direct fetch blocked in the authoring session
   note: "Source of the portfolio, Agile Release Train and team levels, PI planning, WSJF, system demo and Inspect & Adapt named on the map's lifecycle band. Cited as one framework that uses these terms, not as a requirement."
 
 aicpa-soc2:
@@ -79,4 +81,5 @@ aicpa-soc2:
   author: "AICPA & CIMA"
   org: "aicpa-cima.com"
   url: "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2"
+  accessed: "2026-09-25"  # title and URL confirmed from search results; direct fetch blocked in the authoring session
   note: "The attestation framework behind the change controls named on the map's assurance band."
